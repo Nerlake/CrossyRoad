@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2013768479129763744}
   - component: {fileID: 7565422765248136126}
   - component: {fileID: 8899638954538384341}
-  - component: {fileID: 6331854164726746867}
+  - component: {fileID: 5257318730154150465}
   m_Layer: 0
-  m_Name: Terrain Herbe
+  m_Name: Terrain Eau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8af3e588fed09b34797f659bc8d5ebd1, type: 2}
+  - {fileID: 2100000, guid: 0ab1462b0138c354ab76c0efc93cdc7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6331854164726746867
+--- !u!114 &5257318730154150465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1955534418268350621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6937ffece81244b903deb0f2449ba4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f40d7f7905858a4a9db73cdac7003f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treePrefab: {fileID: 0}
+  logPrefab: {fileID: 2359207118673001905, guid: f3213fcac6088a94d83b9db6838ec4ed, type: 3}
   minPosition: 0
   maxPosition: 0
-  treeCount: 0
+  logCount: 0
