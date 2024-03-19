@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6937ffece81244b903deb0f2449ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treePrefab: {fileID: 0}
-  minPosition: 0
-  maxPosition: 0
-  treeCount: 0
+  treePrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+  minPosition: -25
+  maxPosition: 25
+  treeCount: 1
