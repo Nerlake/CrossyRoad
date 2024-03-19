@@ -121,4 +121,4 @@ MonoBehaviour:
   treePrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
   minPosition: -25
   maxPosition: 25
-  treeCount: 3
+  treeCount: 1
