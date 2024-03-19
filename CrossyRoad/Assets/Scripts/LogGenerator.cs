@@ -23,7 +23,7 @@ public class LogGenerator : MonoBehaviour
         logSpeed = random.Next(1,5)/20f;
         minPosition = this.transform.position.z - 25;
         maxPosition = this.transform.position.z + 25;
-        isRightSpawner = random.Next(0, 2) == 1;
+        isRightSpawner = (this.transform.position.x) % 2 == 0;
         isLilySpawner = random.Next(0,2) == 0;
 
         if (isLilySpawner)
