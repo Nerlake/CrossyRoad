@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3869551433047826038
+--- !u!1 &7780663714776071382
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1272914856870752444}
-  - component: {fileID: 6863645541743230001}
+  - component: {fileID: 3478324711218911265}
+  - component: {fileID: 7037914969686190991}
   m_Layer: 0
-  m_Name: TerrainGenerator
+  m_Name: GroupTerrainEau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1272914856870752444
+--- !u!4 &3478324711218911265
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3869551433047826038}
+  m_GameObject: {fileID: 7780663714776071382}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6863645541743230001
+--- !u!114 &7037914969686190991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3869551433047826038}
+  m_GameObject: {fileID: 7780663714776071382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a27cb413b0d6740bdae866a15613c2, type: 3}
+  m_Script: {fileID: 11500000, guid: a04306d59a227694f8b85075de8baee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainPrefabsGroup:
-  - {fileID: 7780663714776071382, guid: 2eb5dd3256ef56f43874f5774cc3c429, type: 3}
-  - {fileID: 7780663714776071382, guid: 8edc95400fb8de44a9df045e003e7de1, type: 3}
-  maxTerrainGroupCount: 50
+  terrainPrefab: {fileID: 1955534418268350621, guid: 0fe244af365662e44b8e474d6e3f6d6c, type: 3}
+  minTerrainCount: 1
+  maxTerrainCount: 2
+  listTerrainPrefabs: []
