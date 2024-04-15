@@ -7,6 +7,7 @@ public class LandGenerator : MonoBehaviour
 {
     [SerializeField] private int _numberRoad;
     [SerializeField] private GameObject _road;
+    [SerializeField] private List<GameObject> _terrainList = new List<GameObject>();
 
     private void Start()
     {
