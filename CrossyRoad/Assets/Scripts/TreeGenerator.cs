@@ -12,7 +12,7 @@ public class TreeGenerator : MonoBehaviour
 
     void Start()
     {
-        for(int i=0; i<treeCount; i++)
+        for (int i = 0; i < treeCount; i++)
         {
             float randomZ = Random.Range(minPosition, maxPosition);
             Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, randomZ);
