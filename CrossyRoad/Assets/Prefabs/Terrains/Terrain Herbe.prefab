@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 50}
+  m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,4 +121,4 @@ MonoBehaviour:
   treePrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
   minPosition: -25
   maxPosition: 25
-  treeCount: 1
+  treeCount: 2

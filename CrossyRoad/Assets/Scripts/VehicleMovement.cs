@@ -7,6 +7,10 @@ public class VehicleMovement : MonoBehaviour
     public float speed;
     private void Update()
     {
-        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+        if (transform.position.x < -25 || transform.position.x > 25)
+        {
+            Destroy(gameObject);
+        }
+        transform.Translate(Vector3.right * (speed * Time.deltaTime));
     }
 }

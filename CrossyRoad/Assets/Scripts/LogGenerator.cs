@@ -22,11 +22,11 @@ public class LogGenerator : MonoBehaviour
     void Start()
     {
         logSpeed = ((random.Next(1,4)) + (random.Next(0,11)/10))/50f;
-        minPosition = this.transform.position.z - 25;
-        maxPosition = this.transform.position.z + 25;
-        isRightSpawner = (this.transform.position.x) % 2 == 0;
+        minPosition = this.transform.position.x - 25;
+        maxPosition = this.transform.position.x + 25;
+        isRightSpawner = (this.transform.position.z) % 2 == 0;
         //if x is a multiple of 3 50% to spawn lilypad instead of logs
-        isLilySpawner = this.transform.position.x%3 ==0 ? random.Next(0,2) == 0 : false;
+        isLilySpawner = this.transform.position.z%3 ==0 ? random.Next(0,2) == 0 : false;
 
         if (isLilySpawner)
         {
@@ -34,7 +34,7 @@ public class LogGenerator : MonoBehaviour
             for(int i = 0; i <= lilypadNumber;i++)
             {
                 float lilypadStartingPosition = random.Next(-10, 11);
-                Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, lilypadStartingPosition);
+                Vector3 spawnPosition = new Vector3(lilypadStartingPosition, this.transform.position.y, transform.position.z);
                 Instantiate(lilypadPrefab, spawnPosition, Quaternion.identity);
             }         
         }
@@ -57,8 +57,8 @@ public class LogGenerator : MonoBehaviour
         for(int i =0; i< logList.Count;i++)// GameObject log in logList)
         {
             GameObject log = logList[i];
-            log.transform.position += isRightSpawner ? new Vector3(0, 0, -logSpeed) : new Vector3(0,0, logSpeed);
-            if(log.transform.position.z > maxPosition || log.transform.position.z < minPosition)
+            log.transform.position += isRightSpawner ? new Vector3(-logSpeed, 0, 0) : new Vector3(logSpeed, 0, 0);
+            if(log.transform.position.x > maxPosition || log.transform.position.x < minPosition)
             {
                 Destroy(log);
                 logList.Remove(log);
@@ -71,7 +71,7 @@ public class LogGenerator : MonoBehaviour
 
         float logStartingPosition = isRightSpawner ? maxPosition : minPosition;
 
-        Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, logStartingPosition);
+        Vector3 spawnPosition = new Vector3(logStartingPosition, this.transform.position.y, transform.position.z);
 
         GameObject newLog = Instantiate(logPrefab, spawnPosition, Quaternion.identity);
         logList.Add(newLog);

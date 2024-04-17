@@ -16,7 +16,7 @@ public class TerrainGroupGenerator : MonoBehaviour
         int terrainCount = Random.Range(minTerrainCount, maxTerrainCount + 1); 
         for (int i = 0; i < terrainCount; i++) 
         {
-            Vector3 spawnPosition = new Vector3(transform.position.x + i, transform.position.y, transform.position.z); 
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + i); 
             GameObject instantiatedTerrain = Instantiate(terrainPrefab, spawnPosition, Quaternion.identity, transform);
             listTerrainPrefabs.Add(instantiatedTerrain); 
         }

@@ -8,12 +8,12 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> terrainPrefabsGroup;
     [SerializeField] private int maxTerrainGroupCount;
     private List<GameObject> listTerrainPrefabs;
-    private float xPosition = 0;
+    private float zPosition = 0;
 
     void Start()
     {
         listTerrainPrefabs = new List<GameObject>();
-        xPosition = transform.position.x;
+        zPosition = transform.position.z;
         GenerateTerrain();
     }
 
@@ -28,10 +28,10 @@ public class TerrainGenerator : MonoBehaviour
         for (int i = 0; i < maxTerrainGroupCount; i++)
         {
             int randomTerrainIndex = Random.Range(0, terrainPrefabsGroup.Count);
-            Vector3 spawnPosition = new Vector3(xPosition, transform.position.y, transform.position.z);
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, zPosition);
             GameObject generateTerrainGroup = Instantiate(terrainPrefabsGroup[randomTerrainIndex], spawnPosition, Quaternion.identity);
             listTerrainPrefabs.Add(generateTerrainGroup);
-            xPosition += generateTerrainGroup.GetComponent<TerrainGroupGenerator>().GetTerrainCount();
+            zPosition += generateTerrainGroup.GetComponent<TerrainGroupGenerator>().GetTerrainCount();
         }
     }
 }

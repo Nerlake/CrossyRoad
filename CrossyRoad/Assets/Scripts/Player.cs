@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (Mathf.Round(transform.localPosition.x) % 3 == 0 &&
-                transform.localPosition.x > _lastPosXTriggedCameraMvt)
+            if (Mathf.Round(transform.localPosition.z) % 3 == 0 &&
+                transform.localPosition.z > _lastPosXTriggedCameraMvt)
             {
                 Camera cameraScript = _camera.GetComponent<Camera>();
                 cameraScript.readyForForwardAnimation = true;
-                _lastPosXTriggedCameraMvt = transform.localPosition.x;
+                _lastPosXTriggedCameraMvt = transform.localPosition.z;
             }
 
             _animator.SetTrigger("Forward");

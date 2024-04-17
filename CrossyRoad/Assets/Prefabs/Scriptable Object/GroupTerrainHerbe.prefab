@@ -47,3 +47,4 @@ MonoBehaviour:
   terrainPrefab: {fileID: 1955534418268350621, guid: 3592655e0cd8cff4db3cdd398abc14ab, type: 3}
   minTerrainCount: 1
   maxTerrainCount: 4
+  listTerrainPrefabs: []
