@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    private float _cameraSpeed = 3.0f;
+    private float _cameraSpeed = 1.0f;
 
     [SerializeField] public bool readyForForwardAnimation = false;
+    [SerializeField] private GameObject player;
+    private float lastPositionZ = -2;
+    [SerializeField] private int distance = 0;
+
+
+    private void Start()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z - distance);
+    }
 
     private void Update()
     {
-        if (readyForForwardAnimation)
+        Debug.Log(player.transform.position.z);
+
+        Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, player.transform.position.z - distance);
+        if (player.transform.position.z > lastPositionZ)
         {
-            StartCoroutine(ForwardAnimation());
-            readyForForwardAnimation = false;
+            lastPositionZ = player.transform.position.z;
         }
-    }
-
-    private IEnumerator ForwardAnimation()
-    {
-        float duration = 2.0f;
-        float startTime = Time.time;
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = startPosition + Vector3.right * _cameraSpeed;
-
-        while (Time.time < startTime + duration)
+        else
         {
-            // Interpolation linéaire de la position de départ à la position finale sur la durée spécifiée
-            transform.position = Vector3.Lerp(startPosition, endPosition, (Time.time - startTime) / duration);
-            yield return null;
+            targetPosition.z = transform.position.z + _cameraSpeed * Time.deltaTime;
         }
 
-        // Assurez-vous que la position finale est bien atteinte en fin d'animation
-        transform.position = endPosition;
-
-        // L'animation est terminée, vous pouvez ici remettre readyForForwardAnimation à false ou effectuer d'autres actions
+        // Utiliser MoveTowards au lieu de Lerp pour un mouvement constant vers la cible
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, _cameraSpeed * Time.deltaTime);
     }
+
+
 }
