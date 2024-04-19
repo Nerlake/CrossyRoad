@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8899638954538384341}
   - component: {fileID: 5257318730154150465}
   m_Layer: 0
-  m_Name: Terrain Eau
+  m_Name: Terrain Eau Buche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7740988864826272305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2013768479129763744
@@ -118,6 +119,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f40d7f7905858a4a9db73cdac7003f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logPrefab: {fileID: 2359207118673001905, guid: f3213fcac6088a94d83b9db6838ec4ed, type: 3}
-  lilypadPrefab: {fileID: 2359207118673001905, guid: a407666545e0a3c45b51cf86fe6b2f42, type: 3}
-  logDelay: 0
+  minWait: 1
+  maxWait: 5
+  logPrefab:
+  - {fileID: 2359207118673001905, guid: f3213fcac6088a94d83b9db6838ec4ed, type: 3}
+  startPoint: {fileID: 7095217075032432482}
+--- !u!1 &7095217075032432482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7740988864826272305}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7740988864826272305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7095217075032432482}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7098810372075825760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> roadPrefab;
     [SerializeField] private float minWait = 0.2f, maxWait = 0.5f;
     [SerializeField] private List<GameObject> vehiclePrefab;
     [SerializeField] private GameObject startPoint;
-    private bool reverse = false;
 
     // [SerializeField] public bool reverse = false;
 
@@ -22,21 +20,14 @@ public class Road : MonoBehaviour
         StartCoroutine(spawnVehicle());
     }
 
-
-    //private void OnCollisionExit(Collision other)
-    //{
-    //    Debug.Log("vehicle exit");
-    //    Destroy(other.gameObject);
-    //}
-
     private IEnumerator spawnVehicle()
     {
         while (true)
         {
-            GameObject car = Instantiate(vehiclePrefab[_random.Next(vehiclePrefab.Count)], startPoint.transform.position, transform.rotation);
 
-
-            yield return new WaitForSeconds(minWait + (float)_random.NextDouble() * maxWait);
+            float waitTime = minWait + (float)_random.NextDouble() * (maxWait - minWait);
+            yield return new WaitForSeconds(waitTime);
+            Instantiate(vehiclePrefab[_random.Next(vehiclePrefab.Count)], startPoint.transform.position, transform.rotation);
         }
     }
 }

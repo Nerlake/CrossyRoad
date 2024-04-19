@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 4880784842075859688, guid: 218ed8aa441ec264eab9cef83ec8c785, type: 3}
   - {fileID: 6712825364511022933, guid: d7bd221533e3f524f8704c3d6f0e1b11, type: 3}
   minWait: 1
-  maxWait: 3
+  maxWait: 5
   vehiclePrefab:
   - {fileID: 6712825364511022933, guid: d7bd221533e3f524f8704c3d6f0e1b11, type: 3}
   - {fileID: 4880784842075859688, guid: 218ed8aa441ec264eab9cef83ec8c785, type: 3}

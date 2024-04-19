@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2013768479129763744}
   - component: {fileID: 7565422765248136126}
   - component: {fileID: 8899638954538384341}
-  - component: {fileID: 6331854164726746867}
   m_Layer: 0
   m_Name: Terrain Herbe
   m_TagString: Untagged
@@ -106,19 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6331854164726746867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955534418268350621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6937ffece81244b903deb0f2449ba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  treePrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
-  minPosition: -25
-  maxPosition: 25
-  treeCount: 2
