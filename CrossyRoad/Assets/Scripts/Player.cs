@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private bool isJumping = false;
     [SerializeField] GameObject terrainGenerator;
+    private TerrainGenerator terrainGeneratorScript;
 
 
     private void Start()
     {
         _animator = gameObject.GetComponent<Animator>();
+        terrainGeneratorScript = terrainGenerator.GetComponent<TerrainGenerator>();
     }
 
     private void Update()
@@ -40,8 +42,7 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
         Jump();
-        // Génération du terrain sur TerrainGenerator
-        //terrainGenerator.GetComponent<TerrainGenerator>().GenerateNewTerrain(transform.position);
+        terrainGeneratorScript.GenerateTerrain(transform.position);
 
 
     }

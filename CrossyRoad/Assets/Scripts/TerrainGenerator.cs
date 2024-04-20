@@ -1,67 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
 {
+    [SerializeField] private int maxTerrainCount;
+    [SerializeField] private int minDistanceBetweenLastTerrainAndPlayer;
+    [SerializeField] private List<TerrainData> terrainDatas = new List<TerrainData>();
+    [SerializeField] private Transform terrainHolder;
 
-    [SerializeField] private List<GameObject> terrainPrefabsGroup;
-    [SerializeField] private int maxTerrainGroupCount;
-    [SerializeField] private int minDistanceFromLastTerrain;
-    private List<GameObject> listTerrainPrefabs;
-    private float zPosition = 0;
+    private List<GameObject> currentTerrains = new List<GameObject>();
+    public Vector3 currentPosition = new Vector3(0, 0, 0);
 
-    void Start()
+    private void Start()
     {
-        listTerrainPrefabs = new List<GameObject>();
-        zPosition = transform.position.z;
-        GenerateTerrain();
+
+            InitialSpawnTerrain();
+
+        maxTerrainCount = currentTerrains.Count;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.W))
+    //    {
+    //        Debug.Log(DistanceBetweenLastTerrainAndPlayer(new Vector3(0,0,0)));
+    //        GenerateTerrain();
+    //    }
+    //}
 
-    }
-
-    void GenerateTerrain()
+    private void InitialSpawnTerrain()
     {
-        for (int i = 0; i < maxTerrainGroupCount; i++)
+        for (int i = 0; i < maxTerrainCount; i++)
         {
-            int randomTerrainIndex = Random.Range(0, terrainPrefabsGroup.Count);
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, zPosition);
-            GameObject generateTerrainGroup = Instantiate(terrainPrefabsGroup[randomTerrainIndex], spawnPosition, Quaternion.identity);
-            generateTerrainGroup.transform.SetParent(transform);
-            listTerrainPrefabs.Add(generateTerrainGroup);
-            zPosition += generateTerrainGroup.GetComponent<TerrainGroupGenerator>().GetTerrainCount();
+            int whichTerrain = Random.Range(0, terrainDatas.Count);
+            int terrainInSuccession = Random.Range(1, terrainDatas[whichTerrain].maxInSuccession);
+                for (int j = 0; j < terrainInSuccession; j++)
+                {
+                    GameObject terrain = Instantiate(terrainDatas[whichTerrain].terrain, currentPosition, Quaternion.identity, terrainHolder);
+                    currentTerrains.Add(terrain);
+                    currentPosition.z++;
+                }
         }
     }
 
-    public void GenerateNewTerrain(Vector3 playerPosition)
+    public void GenerateTerrain(Vector3 playerPos)
     {
-        Debug.Log("GenerateNewTerrain");
-        int lastTerrainPosition = GetLastTerrainPositionZ();
-        if (playerPosition.z - lastTerrainPosition < minDistanceFromLastTerrain) return;
-        GenerateTerrain();
-        DestroyTerrain();
-    }
-
-    private void DestroyTerrain()
-    {
-        GameObject firstTerrain = listTerrainPrefabs.FirstOrDefault();
-        Destroy(firstTerrain);
-        listTerrainPrefabs.Remove(firstTerrain);
-    }
-
-    private int GetLastTerrainPositionZ()
-    {
-        GameObject lastGroup = listTerrainPrefabs.LastOrDefault();
-        if (lastGroup != null)
+        if (DistanceBetweenLastTerrainAndPlayer(playerPos) < minDistanceBetweenLastTerrainAndPlayer)
         {
-        return lastGroup.GetComponent<TerrainGroupGenerator>().GetLastTerrainPosition();
-
+ 
+            int whichTerrain = Random.Range(0, terrainDatas.Count);
+            int terrainInSuccession = Random.Range(1, terrainDatas[whichTerrain].maxInSuccession);
+            for (int i = 0; i < terrainInSuccession; i++)
+            {
+                GameObject terrain = Instantiate(terrainDatas[whichTerrain].terrain, currentPosition, Quaternion.identity, terrainHolder);
+                currentTerrains.Add(terrain);
+                DestroyFirstTerrain();
+                currentPosition.z++;
+            }
         }
-        return 0;
     }
+
+    private void DestroyFirstTerrain()
+    {
+        if (currentTerrains.Count > maxTerrainCount)
+        {
+            Destroy(currentTerrains[0]);
+            currentTerrains.RemoveAt(0);
+        }
+    }
+
+    private float DistanceBetweenLastTerrainAndPlayer(Vector3 playerPos)
+    {
+        float distance = currentPosition.z - playerPos.z;
+        return distance;
+    }
+
+
 }
