@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private void MoveForward()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        Jump();
+        Jump(); 
         terrainGeneratorScript.GenerateTerrain(transform.position);
 
 

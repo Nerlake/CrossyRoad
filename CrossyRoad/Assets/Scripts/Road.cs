@@ -27,8 +27,16 @@ public class Road : MonoBehaviour
 
             float waitTime = minWait + (float)_random.NextDouble() * (maxWait - minWait);
             yield return new WaitForSeconds(waitTime);
-            GameObject newCar = Instantiate(vehiclePrefab[_random.Next(vehiclePrefab.Count)], startPoint.transform.position, transform.rotation);
-            newCar.transform.SetParent(transform);
+
+            if (vehiclePrefab.Count > 0)
+            {
+                int index = _random.Next(vehiclePrefab.Count);
+                if (vehiclePrefab[index] != null)
+                {
+                    GameObject newCar = Instantiate(vehiclePrefab[index], startPoint.transform.position, transform.rotation);
+                    newCar.transform.SetParent(transform);
+                }
+            }
         }
     }
 }
