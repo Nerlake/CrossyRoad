@@ -16,7 +16,8 @@ public class TreeGenerator : MonoBehaviour
         {
             float randomX = Random.Range(minPosition, maxPosition);
             Vector3 spawnPosition = new Vector3(randomX, transform.position.y, transform.position.z);
-            Instantiate(treePrefab, spawnPosition, Quaternion.identity);
+            GameObject newTree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
+            newTree.transform.SetParent(transform);
         }
     }
 

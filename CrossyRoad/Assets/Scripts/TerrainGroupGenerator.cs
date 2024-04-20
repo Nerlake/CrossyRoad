@@ -33,4 +33,17 @@ public class TerrainGroupGenerator : MonoBehaviour
             return listTerrainPrefabs.Count;
         }
     }
+
+    public int GetLastTerrainPosition()
+    {
+        if(listTerrainPrefabs == null)
+        {
+            return 0;
+        }
+        else
+        {
+            return (int)listTerrainPrefabs[listTerrainPrefabs.Count - 1].transform.position.z;
+        }
+    }
+
 }
