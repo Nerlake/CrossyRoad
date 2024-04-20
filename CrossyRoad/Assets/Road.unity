@@ -282,6 +282,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3417325357099127471, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417325357099127471, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417325357099127471, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417325357099127471, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417325357099127471, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5086121842955417216, guid: d76b536fca615f748b2d039ba17620c1, type: 3}
       propertyPath: terrainGenerator
       value: 
@@ -530,11 +550,19 @@ PrefabInstance:
       objectReference: {fileID: 282673691}
     - target: {fileID: 73921650167200962, guid: 66776865b57125e488f6af5f25304cd3, type: 3}
       propertyPath: autoMove
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 73921650167200962, guid: 66776865b57125e488f6af5f25304cd3, type: 3}
       propertyPath: cameraSpeed
-      value: 1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 73921650167200962, guid: 66776865b57125e488f6af5f25304cd3, type: 3}
+      propertyPath: autoMoveSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 73921650167200962, guid: 66776865b57125e488f6af5f25304cd3, type: 3}
+      propertyPath: followThreshold
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1179132179522377222, guid: 66776865b57125e488f6af5f25304cd3, type: 3}
       propertyPath: m_Name

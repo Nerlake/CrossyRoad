@@ -4,39 +4,42 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    [SerializeField] private float cameraSpeed = 0.5f;
-    [SerializeField] private GameObject player;
+    [SerializeField] private float cameraSpeed = 0.5f;  // Vitesse à laquelle la caméra suit le joueur ou avance automatiquement
+    [SerializeField] private GameObject player;         // Référence au GameObject du joueur
+    [SerializeField] private float followThreshold = 5f; // Distance à partir de laquelle la caméra commence à suivre le joueur
+    [SerializeField] private float autoMoveSpeed = 0.5f; // Vitesse de déplacement automatique de la caméra
+    private float targetZPosition; // Position cible de la caméra en z
     [SerializeField] private bool autoMove = false;
-    [SerializeField] private int distanceFromPlayer = 0;
-    private float lastPositionZ;
-
+    UnityEngine.Camera cam;
 
     private void Start()
     {
-        lastPositionZ = player.transform.position.z;
-        transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z - distanceFromPlayer);
+        cam = UnityEngine.Camera.main;
+        targetZPosition = player.transform.position.z; // Initialisation de la position cible avec la position du joueur
     }
 
     private void Update()
     {
-        if(player == null) return;
+        if (player == null) return; 
 
-        Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, player.transform.position.z - distanceFromPlayer);
-        if (autoMove)
+        float playerPositionZ = player.transform.position.z;
+        if (playerPositionZ > targetZPosition + followThreshold)
         {
-            if (player.transform.position.z > lastPositionZ)
-            {
-                lastPositionZ = player.transform.position.z;
-            }
-            else
-            {
-                targetPosition.z = transform.position.z + cameraSpeed * Time.deltaTime;
-            }
-
+            targetZPosition = playerPositionZ;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, cameraSpeed * Time.deltaTime);
+        if (autoMove)
+        {
+            targetZPosition += autoMoveSpeed * Time.deltaTime;
+        }
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, targetZPosition, cameraSpeed * Time.deltaTime));
+
+        IsThePlayerOutOfCamera();
 
     }
 
+    public void IsThePlayerOutOfCamera()
+    {
+  
+    }
 }
