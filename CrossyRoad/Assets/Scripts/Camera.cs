@@ -19,6 +19,8 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
+        if(player == null) return;
+
         Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, player.transform.position.z - distanceFromPlayer);
         if (autoMove)
         {

@@ -27,7 +27,8 @@ public class LogGenerator : MonoBehaviour
 
             float waitTime = minWait + (float)_random.NextDouble() * (maxWait - minWait);
             yield return new WaitForSeconds(waitTime);
-            Instantiate(logPrefab[_random.Next(logPrefab.Count)], startPoint.transform.position, transform.rotation);
+            GameObject log = Instantiate(logPrefab[_random.Next(logPrefab.Count)], startPoint.transform.position, transform.rotation);
+            log.tag = "Log";
         }
     }
 
