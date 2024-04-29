@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a27cb413b0d6740bdae866a15613c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainPrefabsGroup:
-  - {fileID: 7780663714776071382, guid: 2eb5dd3256ef56f43874f5774cc3c429, type: 3}
-  - {fileID: 7780663714776071382, guid: 8edc95400fb8de44a9df045e003e7de1, type: 3}
-  - {fileID: 7780663714776071382, guid: 6b504025e8e0e8343990953215e34c64, type: 3}
-  maxTerrainGroupCount: 50
+  maxTerrainCount: 30
+  terrainDatas:
+  - {fileID: 11400000, guid: d81a9365479d19c4f8817277f2504c32, type: 2}
+  - {fileID: 11400000, guid: f1be1714de0460347b19a094034c18e6, type: 2}
+  - {fileID: 11400000, guid: f1be1714de0460347b19a094034c18e6, type: 2}
+  terrainHolder: {fileID: 0}

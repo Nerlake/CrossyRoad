@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2013768479129763744}
   - component: {fileID: 7565422765248136126}
   - component: {fileID: 8899638954538384341}
-  - component: {fileID: 6331854164726746867}
+  - component: {fileID: 9210166705462505528}
   m_Layer: 0
   m_Name: Terrain Herbe
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 50}
+  m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6331854164726746867
+--- !u!114 &9210166705462505528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6937ffece81244b903deb0f2449ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treePrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+  treePrefab: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
   minPosition: -25
   maxPosition: 25
   treeCount: 1

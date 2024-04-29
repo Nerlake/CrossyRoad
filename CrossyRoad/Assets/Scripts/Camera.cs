@@ -4,36 +4,42 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    private float _cameraSpeed = 3.0f;
+    [SerializeField] private float cameraSpeed = 0.5f;  // Vitesse à laquelle la caméra suit le joueur ou avance automatiquement
+    [SerializeField] private GameObject player;         // Référence au GameObject du joueur
+    [SerializeField] private float followThreshold = 5f; // Distance à partir de laquelle la caméra commence à suivre le joueur
+    [SerializeField] private float autoMoveSpeed = 0.5f; // Vitesse de déplacement automatique de la caméra
+    private float targetZPosition; // Position cible de la caméra en z
+    [SerializeField] private bool autoMove = false;
+    UnityEngine.Camera cam;
 
-    [SerializeField] public bool readyForForwardAnimation = false;
+    private void Start()
+    {
+        cam = UnityEngine.Camera.main;
+        targetZPosition = player.transform.position.z; // Initialisation de la position cible avec la position du joueur
+    }
 
     private void Update()
     {
-        if (readyForForwardAnimation)
+        if (player == null) return; 
+
+        float playerPositionZ = player.transform.position.z;
+        if (playerPositionZ > targetZPosition + followThreshold)
         {
-            StartCoroutine(ForwardAnimation());
-            readyForForwardAnimation = false;
+            targetZPosition = playerPositionZ;
         }
+
+        if (autoMove)
+        {
+            targetZPosition += autoMoveSpeed * Time.deltaTime;
+        }
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, targetZPosition, cameraSpeed * Time.deltaTime));
+
+        IsThePlayerOutOfCamera();
+
     }
 
-    private IEnumerator ForwardAnimation()
+    public void IsThePlayerOutOfCamera()
     {
-        float duration = 2.0f;
-        float startTime = Time.time;
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = startPosition + Vector3.right * _cameraSpeed;
-
-        while (Time.time < startTime + duration)
-        {
-            // Interpolation linÃ©aire de la position de dÃ©part Ã  la position finale sur la durÃ©e spÃ©cifiÃ©e
-            transform.position = Vector3.Lerp(startPosition, endPosition, (Time.time - startTime) / duration);
-            yield return null;
-        }
-
-        // Assurez-vous que la position finale est bien atteinte en fin d'animation
-        transform.position = endPosition;
-
-        // L'animation est terminÃ©e, vous pouvez ici remettre readyForForwardAnimation Ã  false ou effectuer d'autres actions
+  
     }
 }

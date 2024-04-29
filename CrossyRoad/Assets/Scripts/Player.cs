@@ -5,56 +5,96 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private GameObject _camera;
-    private float _lastPosXTriggedCameraMvt;
     private Animator _animator;
+    private bool isJumping = false;
+    [SerializeField] GameObject terrainGenerator;
+    private TerrainGenerator terrainGeneratorScript;
+
 
     private void Start()
     {
-        _camera = GameObject.Find("Main Camera");
-        _lastPosXTriggedCameraMvt = transform.localPosition.x;
         _animator = gameObject.GetComponent<Animator>();
-        Debug.Log(_animator);
+        terrainGeneratorScript = terrainGenerator.GetComponent<TerrainGenerator>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (Mathf.Round(transform.localPosition.x) % 3 == 0 &&
-                transform.localPosition.x > _lastPosXTriggedCameraMvt)
-            {
-                Camera cameraScript = _camera.GetComponent<Camera>();
-                cameraScript.readyForForwardAnimation = true;
-                _lastPosXTriggedCameraMvt = transform.localPosition.x;
-            }
+            MoveForward();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+        }
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveRight();
+        }
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            MoveBackward();
+        }
 
-            _animator.SetTrigger("Forward");
-            // StartCoroutine(WaitUntilAnimation());
-            // transform.Translate(Vector3.right * 1.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            // transform.Translate(Vector3.right * -1.0f);
-            _animator.SetTrigger("Back");
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            // transform.Translate(Vector3.forward * -1.0f);
-            _animator.SetTrigger("Right");
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            // transform.Translate(Vector3.forward * 1.0f);
-            _animator.SetTrigger("Left");
-        }
     }
 
-    private IEnumerator WaitUntilAnimation()
+    private void MoveForward()
     {
-        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        Jump(); 
+        terrainGeneratorScript.GenerateTerrain(transform.position);
 
-        Debug.Log("finit");
-        // transform.Translate(Vector3.right * 1.0f);
+
     }
+
+    private void MoveBackward()
+    {
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+        Jump();
+    }
+
+    private void MoveLeft()
+    {
+        transform.rotation = Quaternion.Euler(0, -90, 0);
+        Jump();
+    }
+
+    private void MoveRight()
+    {
+        transform.rotation = Quaternion.Euler(0, 90, 0);
+        Jump();
+    }
+
+    public void Jump()
+    {
+        if (!isJumping && IsPathClear())
+        {
+            isJumping = true;
+            _animator.SetTrigger("Jump");
+            Vector3 newPosition = transform.position + transform.forward * 1;
+            newPosition.x = Mathf.Round(newPosition.x);
+            newPosition.z = Mathf.Round(newPosition.z);
+            transform.position = newPosition;
+        }
+    }
+
+    public void EndJump()
+    {
+        isJumping = false;
+    }
+
+    bool IsPathClear()
+    {
+        RaycastHit hit;
+        float checkDistance = 1.0f;
+        return !Physics.Raycast(transform.position, transform.forward, out hit, checkDistance);
+    }
+
+
+
+
+
+
+
+
 }
