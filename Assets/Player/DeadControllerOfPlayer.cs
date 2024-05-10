@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeadControllerOfPlayer : MonoBehaviour
 {
     private float totalTimeIdleSinceLastMoveOnZ;
-    private float maxTimeBeforeDead = 10f;
+    private float maxTimeBeforeDead = 1000f;
     private float lastPositionOnZ;
 
     private void Start()
@@ -37,6 +37,12 @@ public class DeadControllerOfPlayer : MonoBehaviour
     public void OnDeadBecauseOutsideOfFov()
     {
         print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
+        EditorApplication.isPlaying = false;
+    }
+
+    public void OnDeadBecauseVehicleCollision()
+    {
+        print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
         EditorApplication.isPlaying = false;
     }
 }
