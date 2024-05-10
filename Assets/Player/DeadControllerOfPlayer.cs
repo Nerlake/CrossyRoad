@@ -1,11 +1,10 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
 public class DeadControllerOfPlayer : MonoBehaviour
 {
     private float totalTimeIdleSinceLastMoveOnZ;
-    private float maxTimeBeforeDead = 2f;
+    private float maxTimeBeforeDead = 10f;
     private float lastPositionOnZ;
 
     private void Start()
