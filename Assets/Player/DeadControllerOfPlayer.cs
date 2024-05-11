@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeadControllerOfPlayer : MonoBehaviour
 {
     private float totalTimeIdleSinceLastMoveOnZ;
-    private float maxTimeBeforeDead = 1000f;
+    private float maxTimeBeforeDead = 10f;
     private float lastPositionOnZ;
 
     private void Start()
@@ -13,6 +13,26 @@ public class DeadControllerOfPlayer : MonoBehaviour
     }
 
     private void Update()
+    {
+        ManageIdleTime();
+        ManageCollisionWithRiver();
+    }
+
+    private void ManageCollisionWithRiver()
+    {
+        Debug.DrawRay(transform.position, -transform.up, Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1))
+        {
+            if (hit.collider.CompareTag("River"))
+            {
+                OnDeadBecauseFallInRiver();
+            }
+        }
+    }
+
+    private void ManageIdleTime()
     {
         totalTimeIdleSinceLastMoveOnZ += Time.deltaTime;
 
@@ -26,6 +46,12 @@ public class DeadControllerOfPlayer : MonoBehaviour
         {
             OnDeadBecauseTooIdle();
         }
+    }
+
+    private void OnDeadBecauseFallInRiver()
+    {
+        print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
+        // EditorApplication.isPlaying = false;
     }
 
     private void OnDeadBecauseTooIdle()

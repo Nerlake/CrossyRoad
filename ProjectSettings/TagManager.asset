@@ -8,6 +8,7 @@ TagManager:
   - Zone
   - PlayableZone
   - SeatOnLog
+  - River
   layers:
   - Default
   - TransparentFX
