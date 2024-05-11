@@ -8,7 +8,8 @@ public class LandGeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] zones;
 
-    private float positionOfLastZoneInZ = 0;
+    private int positionOfLastZoneInZ = 0;
+    private GameObject lastNewZone;
 
     private void Start()
     {
@@ -20,12 +21,18 @@ public class LandGeneratorController : MonoBehaviour
                 transform.rotation
             );
 
-            if (Random.Range(0, 2) % 2 == 0)
+            if (lastNewZone && lastNewZone.name == "RiverContainer(Clone)" && newZone.name == "RiverContainer(Clone)")
+            {
+                newZone.transform.rotation = lastNewZone.transform.rotation * Quaternion.Euler(0, 180, 0);
+            }
+            else if (Random.Range(0, 2) % 2 == 0)
             {
                 newZone.transform.Rotate(Vector3.up * 180);
             }
 
             newZone.transform.SetParent(this.transform);
+
+            lastNewZone = newZone;
         }
     }
 
@@ -58,11 +65,17 @@ public class LandGeneratorController : MonoBehaviour
             transform.rotation
         );
 
-        if (Random.Range(0, 2) % 2 == 0)
+        if (lastNewZone && lastNewZone.name == "RiverContainer(Clone)" && newZone.name == "RiverContainer(Clone)")
+        {
+            newZone.transform.rotation = lastNewZone.transform.rotation * Quaternion.Euler(0, 180, 0);
+        }
+        else if (Random.Range(0, 2) % 2 == 0)
         {
             newZone.transform.Rotate(Vector3.up * 180);
         }
 
         newZone.transform.SetParent(this.transform);
+
+        lastNewZone = newZone;
     }
 }
