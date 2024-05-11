@@ -7,7 +7,7 @@ public class KillerController : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
-        print("KillerController: Destruction de l'objet " + other.gameObject.name);
+        // print("KillerController: Destruction de l'objet " + other.gameObject.name);
         Destroy(other.gameObject);
     }
 }

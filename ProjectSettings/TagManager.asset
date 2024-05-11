@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - LandGenerator
+  - Zone
+  - PlayableZone
   layers:
   - Default
   - TransparentFX

@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8328202049310633096}
   m_Layer: 0
   m_Name: RoadContainer
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,8 +185,8 @@ GameObject:
   - component: {fileID: 580569584361748536}
   - component: {fileID: 6369376170053586299}
   m_Layer: 0
-  m_Name: Road
-  m_TagString: Untagged
+  m_Name: PlayableZone
+  m_TagString: PlayableZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
