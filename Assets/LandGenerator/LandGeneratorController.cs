@@ -36,14 +36,14 @@ public class LandGeneratorController : MonoBehaviour
 
     private void CheckIfNeedNewZone()
     {
-        GameObject firstPlayableZone = transform.GetChild(0).Find("PlayableZone").gameObject;
-        Renderer firstZoneRenderer = firstPlayableZone.GetComponent<Renderer>();
+        GameObject firstZoneContainer = transform.GetChild(0).Find("PlayableZone").gameObject;
+        Renderer firstZoneRenderer = firstZoneContainer.GetComponent<Renderer>();
 
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
         if (!GeometryUtility.TestPlanesAABB(planes, firstZoneRenderer.bounds))
         {
             print("LandGenerator: La 1er zone n'est plus dans la FOV il va être détruit");
-            Destroy(firstPlayableZone.transform.parent.gameObject);
+            Destroy(firstZoneContainer.transform.parent.gameObject);
 
             print("LandGenerator: Une zone va être ajouté à la fin");
             AddNewZone();
