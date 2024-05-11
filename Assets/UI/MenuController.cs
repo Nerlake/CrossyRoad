@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] private GameObject menu;
+
     private bool isPause = false;
     void Update()
     {
@@ -11,10 +13,12 @@ public class MenuController : MonoBehaviour
         if (isPause)
         {
             Time.timeScale = 0;
+            menu.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
+            menu.SetActive(false);
         }
     }
 }

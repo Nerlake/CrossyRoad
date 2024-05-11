@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     private GameObject player;
 
-    private float speedMovementCamera = 5f;
+    private float speedMovementCamera = 8f;
     private float offsetZ = 3f;
 
     private void Start()
@@ -14,7 +14,7 @@ public class CameraFollowPlayer : MonoBehaviour
         player = GameObject.Find("Player").gameObject;
 
         transform.position = player.transform.position + Vector3.back * offsetZ + Vector3.up * 4;
-        transform.rotation = Quaternion.Euler(30, 0, 0);
+        transform.rotation = Quaternion.Euler(50, 0, 0);
     }
 
     private void Update()
