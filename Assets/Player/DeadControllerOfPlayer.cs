@@ -31,18 +31,18 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private void OnDeadBecauseTooIdle()
     {
         print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
-        EditorApplication.isPlaying = false;
+        // EditorApplication.isPlaying = false;
     }
 
     public void OnDeadBecauseOutsideOfFov()
     {
         print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
-        EditorApplication.isPlaying = false;
+        // EditorApplication.isPlaying = false;
     }
 
     public void OnDeadBecauseVehicleCollision()
     {
         print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
-        EditorApplication.isPlaying = false;
+        // EditorApplication.isPlaying = false;
     }
 }
