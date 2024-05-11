@@ -6,6 +6,8 @@ public class LogController : MonoBehaviour, IMovable
 {
     [SerializeField] private float speed;
 
+    private GameObject playerOnMe;
+
     private void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -15,7 +17,7 @@ public class LogController : MonoBehaviour, IMovable
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<DeadControllerOfPlayer>().OnDeadBecauseVehicleCollision();
+
         }
     }
 

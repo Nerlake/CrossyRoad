@@ -5,18 +5,28 @@ public class PlayerMovements : MonoBehaviour
     private bool isAnimationUpInProgress = false;
     private bool isAnimationDownInProgress = false;
 
-    private float speed = 20f;
-    private float heightUp = 1f;
+    private float speed = 40f;
+    private float heightUp = 0.5f;
     private float interpolation;
 
     private Vector3 startPositionAnimation;
     private Vector3 endPositionAnimation;
 
+    private GameObject currentSeatOnLog;
+
     private void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
+
         if (isAnimationUpInProgress)
         {
             MoveWithAnimationUp();
+            return;
+        }
+
+        if (isAnimationDownInProgress)
+        {
+            MoveWithAnimationDown();
             return;
         }
 
@@ -25,12 +35,6 @@ public class PlayerMovements : MonoBehaviour
 
     private void KeyboardController()
     {
-        if (isAnimationDownInProgress)
-        {
-            MoveWithAnimationDown();
-            return;
-        }
-
         if (Input.GetKeyDown(KeyCode.W))
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -55,12 +59,40 @@ public class PlayerMovements : MonoBehaviour
 
     private void MoveForward()
     {
+        if (currentSeatOnLog)
+        {
+            currentSeatOnLog.GetComponent<SeatController>().playerOnMe = null;
+            currentSeatOnLog = null;
+        }
+
+        if (checkIfNextPositionIsLog())
+        {
+            return;
+        }
+
         if (!isAnimationUpInProgress && !isAnimationDownInProgress)
         {
             startPositionAnimation = transform.position;
             endPositionAnimation = startPositionAnimation + transform.forward * 0.5f + Vector3.up * heightUp;
             isAnimationUpInProgress = true;
         }
+    }
+
+    private bool checkIfNextPositionIsLog()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
+        {
+            if (hit.collider.CompareTag("SeatOnLog"))
+            {
+                currentSeatOnLog = hit.collider.gameObject;
+                currentSeatOnLog.GetComponent<SeatController>().playerOnMe = gameObject;
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void MoveWithAnimationUp()
