@@ -34,6 +34,7 @@ public class GrassController : MonoBehaviour
                         transform.position + Vector3.right * i + Vector3.up,
                         transform.rotation
                     );
+                    newTree.transform.SetParent(gameObject.transform);
                 }
             }
         }
