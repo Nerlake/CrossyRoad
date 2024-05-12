@@ -44,6 +44,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void MainMenu()
     {
-        // Ecrire le code pour aller au menu principal
+        SceneManager.LoadScene("Home");
     }
 }
