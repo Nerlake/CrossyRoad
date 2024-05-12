@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
@@ -10,13 +11,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button btnMoyen;
     [SerializeField] private Button btnHard;
 
-    private float initialSpeed;
-
-    private void Start()
-    {
-
-    }
-
+    private float initialSpeed = 2;
 
     public void ModeFacile()
     {
@@ -24,7 +19,7 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = true;
         btnHard.interactable = true;
 
-        initialSpeed = 4;
+        initialSpeed = 2;
     }
 
     public void ModeMoyen()
@@ -33,7 +28,7 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = false;
         btnHard.interactable = true;
 
-        initialSpeed = 8;
+        initialSpeed = 5;
     }
 
     public void ModeHard()
@@ -42,7 +37,7 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = true;
         btnHard.interactable = false;
 
-        initialSpeed = 16;
+        initialSpeed = 10;
     }
 
     public void Exit()
@@ -52,6 +47,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-
+        LandGeneratorController.initialSpeed = initialSpeed;
+        SceneManager.LoadScene("GameStart");
     }
 }

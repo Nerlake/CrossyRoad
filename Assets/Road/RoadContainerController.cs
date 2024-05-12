@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RoadContainerController : MonoBehaviour
+public class RoadContainerController : MonoBehaviour, IMovableContainer
 {
     [SerializeField] private GameObject[] vehicles;
     private GameObject killer;
@@ -35,5 +35,10 @@ public class RoadContainerController : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minWaitBeforeSpawnVehicle, maxWaitBeforeSpawnVehicle));
         }
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speedOfNewVehicle = newSpeed;
     }
 }

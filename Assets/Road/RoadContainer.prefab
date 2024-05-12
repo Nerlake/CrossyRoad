@@ -169,7 +169,7 @@ MonoBehaviour:
   vehicles:
   - {fileID: 2959025638121028474, guid: ba810f6247e1ef14fa8777d2cfbc184b, type: 3}
   - {fileID: 5761859440252755269, guid: a3fc7bef99a473c4d8128c872395f9c1, type: 3}
-  speedOfNewVehicle: 6
+  speedOfNewVehicle: 0
   minWaitBeforeSpawnVehicle: 1
   maxWaitBeforeSpawnVehicle: 6
 --- !u!1 &8137118619943787967

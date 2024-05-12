@@ -8,6 +8,8 @@ public class LandGeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] zones;
 
+    public static float initialSpeed;
+
     private int positionOfLastZoneInZ = 0;
     private GameObject lastNewZone;
 
@@ -31,6 +33,7 @@ public class LandGeneratorController : MonoBehaviour
             }
 
             newZone.transform.SetParent(this.transform);
+            newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeed);
 
             lastNewZone = newZone;
         }
@@ -75,6 +78,7 @@ public class LandGeneratorController : MonoBehaviour
         }
 
         newZone.transform.SetParent(this.transform);
+        newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeed);
 
         lastNewZone = newZone;
     }

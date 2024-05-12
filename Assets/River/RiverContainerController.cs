@@ -2,7 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RiverContainerController : MonoBehaviour
+public interface IMovableContainer
+{
+    public void SetSpeed(float newSpeed);
+}
+
+public class RiverContainerController : MonoBehaviour, IMovableContainer
 {
     [SerializeField] private GameObject[] logs;
     private GameObject killer;
@@ -38,5 +43,10 @@ public class RiverContainerController : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minWaitBeforeSpawnLog, maxWaitBeforeSpawnLog));
         }
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speedOfNewLog = newSpeed;
     }
 }
