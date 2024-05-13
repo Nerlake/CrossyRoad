@@ -96,9 +96,15 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
 
         print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
-        lifeController.RemoveOneLife();
-        timeSinceLastDeath = 0f;
-        totalTimeIdleSinceLastMoveOnZ = 0;
+        if (lifeController.RemoveOneLife())
+        {
+            timeSinceLastDeath = 0f;
+            totalTimeIdleSinceLastMoveOnZ = 0;
+        }
+        else
+        {
+            PrepareAndShowGameOverScreen();
+        }
         // EditorApplication.isPlaying = false;
     }
 
@@ -107,8 +113,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
 
         print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
-        lifeController.RemoveOneLife();
-        timeSinceLastDeath = 0f;
+
+        PrepareAndShowGameOverScreen();
         // EditorApplication.isPlaying = false;
     }
 
