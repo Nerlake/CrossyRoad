@@ -150,7 +150,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private void PrepareAndShowGameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        lblYourScore.SetText("Your score is " + scoreController.currentPosZ);
+        lblYourScore.SetText("Your score is " + (int)scoreController.currentPosZ);
         pauseMenuController.isPause = true;
     }
 
@@ -161,7 +161,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
         InitScore();
 
-        addScoreToBoard(score,pseudo);
+        addScoreToBoard(score, pseudo);
 
         SceneManager.LoadScene("Home");
     }
@@ -170,7 +170,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         if (score > PlayerPrefs.GetInt("HSValue1"))
         {
-
             PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
             PlayerPrefs.SetString("HSPseudo5", PlayerPrefs.GetString("HSPseudo4"));
             PlayerPrefs.SetInt("HSValue4", PlayerPrefs.GetInt("HSValue3"));
