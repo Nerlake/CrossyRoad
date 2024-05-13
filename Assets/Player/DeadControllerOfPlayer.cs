@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DeadControllerOfPlayer : MonoBehaviour
 {
@@ -150,11 +152,100 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void OnValiderScore()
     {
-        float score = scoreController.currentPosZ;
+        int score = (int)scoreController.currentPosZ;
         string pseudo = inputPseudo.text;
 
+        InitScore();
 
+        addScoreToBoard(score,pseudo);
 
         SceneManager.LoadScene("Home");
+    }
+
+    public void addScoreToBoard(int score, string pseudo)
+    {
+        if (score > PlayerPrefs.GetInt("HSValue1"))
+        {
+
+            PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
+            PlayerPrefs.SetString("HSPseudo5", PlayerPrefs.GetString("HSPseudo4"));
+            PlayerPrefs.SetInt("HSValue4", PlayerPrefs.GetInt("HSValue3"));
+            PlayerPrefs.SetString("HSPseudo4", PlayerPrefs.GetString("HSPseudo3"));
+            PlayerPrefs.SetInt("HSValue3", PlayerPrefs.GetInt("HSValue2"));
+            PlayerPrefs.SetString("HSPseudo3", PlayerPrefs.GetString("HSPseudo2"));
+            PlayerPrefs.SetInt("HSValue2", PlayerPrefs.GetInt("HSValue1"));
+            PlayerPrefs.SetString("HSPseudo2", PlayerPrefs.GetString("HSPseudo1"));
+
+            PlayerPrefs.SetInt("HSValue1", score);
+            PlayerPrefs.SetString("HSPseudo1", pseudo);
+        }
+        else if (score > PlayerPrefs.GetInt("HSValue2"))
+        {
+            PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
+            PlayerPrefs.SetString("HSPseudo5", PlayerPrefs.GetString("HSPseudo4"));
+            PlayerPrefs.SetInt("HSValue4", PlayerPrefs.GetInt("HSValue3"));
+            PlayerPrefs.SetString("HSPseudo4", PlayerPrefs.GetString("HSPseudo3"));
+            PlayerPrefs.SetInt("HSValue3", PlayerPrefs.GetInt("HSValue2"));
+            PlayerPrefs.SetString("HSPseudo3", PlayerPrefs.GetString("HSPseudo2"));
+
+            PlayerPrefs.SetInt("HSValue2", score);
+            PlayerPrefs.SetString("HSPseudo2", pseudo);
+        }
+        else if (score > PlayerPrefs.GetInt("HSValue3"))
+        {
+            PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
+            PlayerPrefs.SetString("HSPseudo5", PlayerPrefs.GetString("HSPseudo4"));
+            PlayerPrefs.SetInt("HSValue4", PlayerPrefs.GetInt("HSValue3"));
+            PlayerPrefs.SetString("HSPseudo4", PlayerPrefs.GetString("HSPseudo3"));
+
+            PlayerPrefs.SetInt("HSValue3", score);
+            PlayerPrefs.SetString("HSPseudo3", pseudo);
+        }
+        else if (score > PlayerPrefs.GetInt("HSValue4"))
+        {
+            PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
+            PlayerPrefs.SetString("HSPseudo5", PlayerPrefs.GetString("HSPseudo4"));
+
+            PlayerPrefs.SetInt("HSValue4", score);
+            PlayerPrefs.SetString("HSPseudo4", pseudo);
+        }
+        else if (score > PlayerPrefs.GetInt("HSValue5"))
+        {
+            PlayerPrefs.SetInt("HSValue5", score);
+            PlayerPrefs.SetString("HSPseudo5", pseudo);
+        }
+    }
+
+    public void InitScore()
+    {
+        if (!PlayerPrefs.HasKey("HSValue1"))
+        {
+            PlayerPrefs.SetInt("HSValue1", 500);
+            PlayerPrefs.SetString("HSPseudo1", "Kiryu");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue2"))
+        {
+            PlayerPrefs.SetInt("HSValue2", 400);
+            PlayerPrefs.SetString("HSPseudo2", "Majima");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue3"))
+        {
+            PlayerPrefs.SetInt("HSValue3", 300);
+            PlayerPrefs.SetString("HSPseudo3", "Daigo");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue4"))
+        {
+            PlayerPrefs.SetInt("HSValue4", 200);
+            PlayerPrefs.SetString("HSPseudo4", "Date");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue5"))
+        {
+            PlayerPrefs.SetInt("HSValue5", 100);
+            PlayerPrefs.SetString("HSPseudo5", "Haruka");
+        }
     }
 }
