@@ -10,6 +10,7 @@ TagManager:
   - SeatOnLog
   - River
   - Life
+  - Tree
   layers:
   - Default
   - TransparentFX

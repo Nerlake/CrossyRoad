@@ -33,6 +33,20 @@ public class PlayerMovements : MonoBehaviour
         KeyboardController();
     }
 
+    private bool checkTree()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f))
+        {
+            if (hit.collider.CompareTag("Tree"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void KeyboardController()
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -59,6 +73,11 @@ public class PlayerMovements : MonoBehaviour
 
     private void MoveForward()
     {
+        if (checkTree())
+        {
+            return;
+        }
+
         if (currentSeatOnLog)
         {
             currentSeatOnLog.GetComponent<SeatController>().playerOnMe = null;
