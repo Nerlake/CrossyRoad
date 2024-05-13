@@ -16,12 +16,11 @@ public class PlayerMovements : MonoBehaviour
 
     private DeadControllerOfPlayer deadControllerOfPlayer;
 
-    private AudioSource jumpSound;
+    [SerializeField] private AudioSource jumpSound;
 
     private void Start()
     {
         deadControllerOfPlayer = GetComponent<DeadControllerOfPlayer>();
-        jumpSound = GetComponent<AudioSource>();
     }
 
     private void Update()
