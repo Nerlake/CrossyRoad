@@ -57,6 +57,6 @@ public class MainMenuController : MonoBehaviour
     }
     public void SeeScores()
     {
-        SceneManager.LoadScene("Scores");
+        SceneManager.LoadScene("Score");
     }
 }
