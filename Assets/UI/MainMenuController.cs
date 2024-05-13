@@ -55,4 +55,8 @@ public class MainMenuController : MonoBehaviour
         LandGeneratorController.initialSpeedLog = initialSpeedLog;
         SceneManager.LoadScene("GameStart");
     }
+    public void SeeScores()
+    {
+        SceneManager.LoadScene("Scores");
+    }
 }
