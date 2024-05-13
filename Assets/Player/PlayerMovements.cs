@@ -16,9 +16,12 @@ public class PlayerMovements : MonoBehaviour
 
     private DeadControllerOfPlayer deadControllerOfPlayer;
 
+    private AudioSource jumpSound;
+
     private void Start()
     {
         deadControllerOfPlayer = GetComponent<DeadControllerOfPlayer>();
+        jumpSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -80,6 +83,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void MoveForward()
     {
+        jumpSound.Play();
         deadControllerOfPlayer.ResetTimeSinceLastDeathAndGhostMode();
 
         if (checkTree())
