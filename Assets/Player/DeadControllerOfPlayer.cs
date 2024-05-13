@@ -11,10 +11,14 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     private LifesContoller lifeController;
 
+    private bool ghostMode = false;
+    private Animator animator;
+
     private void Start()
     {
         lastPositionOnZ = transform.position.z;
         lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -57,11 +61,17 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     private void OnDeadBecauseFallInRiver()
     {
+        // if (ghostMode) return;
         if (timeSinceLastDeath <= timeBeforeCheckAgainIsDeath) return;
 
         print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
-        lifeController.RemoveOneLife();
-        timeSinceLastDeath = 0f;
+
+        if (lifeController.RemoveOneLife())
+        {
+            timeSinceLastDeath = 0f;
+            ghostMode = true;
+            animator.SetTrigger("GhostMode");
+        }
         // EditorApplication.isPlaying = false;
     }
 
