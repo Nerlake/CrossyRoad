@@ -23,6 +23,8 @@ public class PlayerMovements : MonoBehaviour
 
     private void Update()
     {
+        Debug.DrawRay(transform.position + transform.right * 0.5f, transform.forward, Color.red);
+        Debug.DrawRay(transform.position + -transform.right * 0.5f, transform.forward, Color.red);
         Debug.DrawRay(transform.position, transform.forward, Color.red);
 
         if (isAnimationUpInProgress)
@@ -110,6 +112,28 @@ public class PlayerMovements : MonoBehaviour
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
+        {
+            if (hit.collider.CompareTag("SeatOnLog"))
+            {
+                currentSeatOnLog = hit.collider.gameObject;
+                currentSeatOnLog.GetComponent<SeatController>().playerOnMe = gameObject;
+
+                return true;
+            }
+        }
+
+        if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.forward, out hit, 1))
+        {
+            if (hit.collider.CompareTag("SeatOnLog"))
+            {
+                currentSeatOnLog = hit.collider.gameObject;
+                currentSeatOnLog.GetComponent<SeatController>().playerOnMe = gameObject;
+
+                return true;
+            }
+        }
+
+        if (Physics.Raycast(transform.position - transform.right * 0.5f, transform.forward, out hit, 1))
         {
             if (hit.collider.CompareTag("SeatOnLog"))
             {
