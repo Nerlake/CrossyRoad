@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 526621335466530169}
   - component: {fileID: 6497971391101212668}
   - component: {fileID: 6866264804694254357}
+  - component: {fileID: 319663948650775695}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -133,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bcbfe28a0c8307b3cd1fe551c3262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverScreen: {fileID: 0}
+  lblYourScore: {fileID: 0}
+  inputPseudo: {fileID: 0}
 --- !u!54 &6497971391101212668
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,3 +176,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fba65aab529044f969332411d7d264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &319663948650775695
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242763741344910026}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40ffcd8267eb030008b744d2aff7487c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

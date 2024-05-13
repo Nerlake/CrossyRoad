@@ -1,5 +1,6 @@
-using UnityEditor;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeadControllerOfPlayer : MonoBehaviour
 {
@@ -14,11 +15,17 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private bool ghostMode = false;
     private Animator animator;
 
+    private ScoreController scoreController;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private TMP_Text lblYourScore;
+    [SerializeField] private TMP_Text inputPseudo;
+
     private void Start()
     {
         lastPositionOnZ = transform.position.z;
         lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
         animator = GetComponent<Animator>();
+        scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
     }
 
     private void Update()
@@ -77,6 +84,10 @@ public class DeadControllerOfPlayer : MonoBehaviour
             timeSinceLastDeath = 0f;
             ghostMode = true;
         }
+        else
+        {
+            PrepareAndShowGameOverScreen();
+        }
         // EditorApplication.isPlaying = false;
     }
 
@@ -112,6 +123,10 @@ public class DeadControllerOfPlayer : MonoBehaviour
             timeSinceLastDeath = 0f;
             ghostMode = true;
         }
+        else
+        {
+            PrepareAndShowGameOverScreen();
+        }
         // EditorApplication.isPlaying = false;
     }
 
@@ -119,5 +134,21 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         ghostMode = false;
         timeSinceLastDeath = 0;
+    }
+
+    private void PrepareAndShowGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+        lblYourScore.SetText("Your score is " + scoreController.currentPosZ);
+    }
+
+    public void OnValiderScore()
+    {
+        float score = scoreController.currentPosZ;
+        string pseudo = inputPseudo.text;
+
+
+
+        SceneManager.LoadScene("Home");
     }
 }
