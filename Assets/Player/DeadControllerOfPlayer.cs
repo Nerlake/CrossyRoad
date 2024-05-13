@@ -6,14 +6,21 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private float totalTimeIdleSinceLastMoveOnZ;
     private float maxTimeBeforeDead = 10f;
     private float lastPositionOnZ;
+    private float timeBeforeCheckAgainIsDeath = 1f;
+    private float timeSinceLastDeath = 0f;
+
+    private LifesContoller lifeController;
 
     private void Start()
     {
         lastPositionOnZ = transform.position.z;
+        lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
     }
 
     private void Update()
     {
+        timeSinceLastDeath += Time.deltaTime;
+
         ManageIdleTime();
         ManageCollisionWithRiver();
     }
@@ -50,25 +57,39 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     private void OnDeadBecauseFallInRiver()
     {
+        if (timeSinceLastDeath <= timeBeforeCheckAgainIsDeath) return;
+
         print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
+        lifeController.RemoveOneLife();
+        timeSinceLastDeath = 0f;
         // EditorApplication.isPlaying = false;
     }
 
     private void OnDeadBecauseTooIdle()
     {
+        if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
+
         print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
+        lifeController.RemoveOneLife();
+        timeSinceLastDeath = 0f;
+        totalTimeIdleSinceLastMoveOnZ = 0;
         // EditorApplication.isPlaying = false;
     }
 
     public void OnDeadBecauseOutsideOfFov()
     {
+        if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
+
         print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
+        lifeController.RemoveOneLife();
+        timeSinceLastDeath = 0f;
         // EditorApplication.isPlaying = false;
     }
 
     public void OnDeadBecauseVehicleCollision()
     {
         print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
+        lifeController.RemoveOneLife();
         // EditorApplication.isPlaying = false;
     }
 }
