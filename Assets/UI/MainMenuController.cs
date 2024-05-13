@@ -59,4 +59,41 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Score");
     }
+
+    public void Start()
+    {
+        InitScore();
+    }
+    public void InitScore()
+    {
+        if (!PlayerPrefs.HasKey("HSValue1"))
+        {
+            PlayerPrefs.SetInt("HSValue1", 250);
+            PlayerPrefs.SetString("HSPseudo1", "Kiryu");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue2"))
+        {
+            PlayerPrefs.SetInt("HSValue2", 200);
+            PlayerPrefs.SetString("HSPseudo2", "Majima");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue3"))
+        {
+            PlayerPrefs.SetInt("HSValue3", 150);
+            PlayerPrefs.SetString("HSPseudo3", "Daigo");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue4"))
+        {
+            PlayerPrefs.SetInt("HSValue4", 100);
+            PlayerPrefs.SetString("HSPseudo4", "Date");
+        }
+
+        if (!PlayerPrefs.HasKey("HSValue5"))
+        {
+            PlayerPrefs.SetInt("HSValue5", 50);
+            PlayerPrefs.SetString("HSPseudo5", "Haruka");
+        }
+    }
 }
