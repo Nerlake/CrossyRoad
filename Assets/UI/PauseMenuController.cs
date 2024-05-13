@@ -7,7 +7,7 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
-    private bool isPause = false;
+    public bool isPause = false;
 
     private void Update()
     {

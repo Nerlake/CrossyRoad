@@ -22,12 +22,15 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private TMP_Text lblYourScore;
     [SerializeField] private TMP_Text inputPseudo;
 
+    private PauseMenuController pauseMenuController;
+
     private void Start()
     {
         lastPositionOnZ = transform.position.z;
         lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
         animator = GetComponent<Animator>();
         scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
+        pauseMenuController = GameObject.Find("UI").GetComponent<PauseMenuController>();
     }
 
     private void Update()
@@ -148,6 +151,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         lblYourScore.SetText("Your score is " + scoreController.currentPosZ);
+        pauseMenuController.isPause = true;
     }
 
     public void OnValiderScore()
