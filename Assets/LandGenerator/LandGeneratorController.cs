@@ -8,7 +8,8 @@ public class LandGeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] zones;
 
-    public static float initialSpeed;
+    public static float initialSpeedVehicle;
+    public static float initialSpeedLog;
 
     private int positionOfLastZoneInZ = 0;
     private GameObject lastNewZone;
@@ -33,7 +34,16 @@ public class LandGeneratorController : MonoBehaviour
             }
 
             newZone.transform.SetParent(this.transform);
-            newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeed);
+
+            if (newZone.name == "RiverContainer(Clone)")
+            {
+                newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeedLog);
+            }
+
+            if (newZone.name == "RoadContainer(Clone)")
+            {
+                newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeedVehicle);
+            }
 
             lastNewZone = newZone;
         }
@@ -78,7 +88,16 @@ public class LandGeneratorController : MonoBehaviour
         }
 
         newZone.transform.SetParent(this.transform);
-        newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeed);
+
+        if (newZone.name == "RiverContainer(Clone)")
+        {
+            newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeedLog);
+        }
+
+        if (newZone.name == "RoadContainer(Clone)")
+        {
+            newZone.GetComponent<IMovableContainer>()?.SetSpeed(initialSpeedVehicle);
+        }
 
         lastNewZone = newZone;
     }

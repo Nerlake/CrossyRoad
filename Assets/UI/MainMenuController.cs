@@ -11,7 +11,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button btnMoyen;
     [SerializeField] private Button btnHard;
 
-    private float initialSpeed = 2;
+    private float initialSpeedVehicle = 2;
+    private float initialSpeedLog = 4;
 
     public void ModeFacile()
     {
@@ -19,7 +20,8 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = true;
         btnHard.interactable = true;
 
-        initialSpeed = 2;
+        initialSpeedVehicle = 2;
+        initialSpeedLog = 4;
     }
 
     public void ModeMoyen()
@@ -28,7 +30,8 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = false;
         btnHard.interactable = true;
 
-        initialSpeed = 5;
+        initialSpeedVehicle = 4;
+        initialSpeedLog = 8;
     }
 
     public void ModeHard()
@@ -37,7 +40,8 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = true;
         btnHard.interactable = false;
 
-        initialSpeed = 10;
+        initialSpeedVehicle = 8;
+        initialSpeedLog = 16;
     }
 
     public void Exit()
@@ -47,7 +51,8 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        LandGeneratorController.initialSpeed = initialSpeed;
+        LandGeneratorController.initialSpeedVehicle = initialSpeedVehicle;
+        LandGeneratorController.initialSpeedLog = initialSpeedLog;
         SceneManager.LoadScene("GameStart");
     }
 }
