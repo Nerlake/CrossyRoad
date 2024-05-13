@@ -122,7 +122,7 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.forward, out hit, 1))
+        if (Physics.Raycast(transform.position + transform.right * 0.4f, transform.forward, out hit, 1))
         {
             if (hit.collider.CompareTag("SeatOnLog"))
             {
@@ -133,7 +133,7 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position - transform.right * 0.5f, transform.forward, out hit, 1))
+        if (Physics.Raycast(transform.position - transform.right * 0.4f, transform.forward, out hit, 1))
         {
             if (hit.collider.CompareTag("SeatOnLog"))
             {
