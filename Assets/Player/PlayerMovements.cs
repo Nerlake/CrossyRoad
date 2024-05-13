@@ -14,6 +14,13 @@ public class PlayerMovements : MonoBehaviour
 
     private GameObject currentSeatOnLog;
 
+    private DeadControllerOfPlayer deadControllerOfPlayer;
+
+    private void Start()
+    {
+        deadControllerOfPlayer = GetComponent<DeadControllerOfPlayer>();
+    }
+
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.forward, Color.red);
@@ -73,6 +80,8 @@ public class PlayerMovements : MonoBehaviour
 
     private void MoveForward()
     {
+        deadControllerOfPlayer.ResetTimeSinceLastDeathAndGhostMode();
+
         if (checkTree())
         {
             return;

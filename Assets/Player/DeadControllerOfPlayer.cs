@@ -6,7 +6,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private float totalTimeIdleSinceLastMoveOnZ;
     private float maxTimeBeforeDead = 10f;
     private float lastPositionOnZ;
-    private float timeBeforeCheckAgainIsDeath = 1f;
+    private float timeBeforeCheckAgainIsDeath = 0.1f;
     private float timeSinceLastDeath = 0f;
 
     private LifesContoller lifeController;
@@ -23,6 +23,11 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     private void Update()
     {
+        if (ghostMode)
+        {
+            animator.SetTrigger("GhostMode");
+        }
+
         timeSinceLastDeath += Time.deltaTime;
 
         ManageIdleTime();
@@ -61,7 +66,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     private void OnDeadBecauseFallInRiver()
     {
-        // if (ghostMode) return;
+        if (ghostMode) return;
+
         if (timeSinceLastDeath <= timeBeforeCheckAgainIsDeath) return;
 
         print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
@@ -70,7 +76,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
         {
             timeSinceLastDeath = 0f;
             ghostMode = true;
-            animator.SetTrigger("GhostMode");
         }
         // EditorApplication.isPlaying = false;
     }
@@ -98,8 +103,21 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void OnDeadBecauseVehicleCollision()
     {
+        if (ghostMode) return;
+
         print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
-        lifeController.RemoveOneLife();
+
+        if (lifeController.RemoveOneLife())
+        {
+            timeSinceLastDeath = 0f;
+            ghostMode = true;
+        }
         // EditorApplication.isPlaying = false;
+    }
+
+    public void ResetTimeSinceLastDeathAndGhostMode()
+    {
+        ghostMode = false;
+        timeSinceLastDeath = 0;
     }
 }
