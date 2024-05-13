@@ -21,6 +21,11 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TMP_Text lblYourScore;
     [SerializeField] private TMP_Text inputPseudo;
+    [SerializeField] private AudioSource splashSound;
+    [SerializeField] private AudioSource crashSound;
+    [SerializeField] private AudioSource outOfPovSound;
+
+
 
     private PauseMenuController pauseMenuController;
 
@@ -82,6 +87,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
         if (timeSinceLastDeath <= timeBeforeCheckAgainIsDeath) return;
 
+        splashSound.Play();
         print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
 
         if (lifeController.RemoveOneLife())
@@ -117,6 +123,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
 
+        outOfPovSound.Play();
+
         print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
 
         PrepareAndShowGameOverScreen();
@@ -128,6 +136,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (ghostMode) return;
 
         print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
+        crashSound.Play();
 
         if (lifeController.RemoveOneLife())
         {
