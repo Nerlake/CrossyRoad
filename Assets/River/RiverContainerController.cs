@@ -27,8 +27,6 @@ public class RiverContainerController : MonoBehaviour, IMovableContainer
 
     private IEnumerator SpawnLogs()
     {
-        int offsetMultipleLog = 0;
-
         while (true)
         {
             for (int i = 0; i < Random.Range(1, 5); i++)
@@ -41,12 +39,8 @@ public class RiverContainerController : MonoBehaviour, IMovableContainer
 
                 newVehicle.GetComponent<IMovable>().SetSpeed(speedOfNewLog);
                 newVehicle.transform.SetParent(gameObject.transform);
-
-                offsetMultipleLog = i;
             }
 
-            minWaitBeforeSpawnLog = offsetMultipleLog / speedOfNewLog;
-            maxWaitBeforeSpawnLog = minWaitBeforeSpawnLog + Random.Range(1, 5);
             yield return new WaitForSeconds(Random.Range(minWaitBeforeSpawnLog, maxWaitBeforeSpawnLog));
         }
     }

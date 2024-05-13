@@ -2471,6 +2471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zones:
   - {fileID: 2724209653144098210, guid: 064c0c0d20e79424e8dc3298ed6303a7, type: 3}
+  - {fileID: 7923846995227051253, guid: ecc2fd1da7656494782cd1cb9706a70b, type: 3}
+  - {fileID: 6987364045810833126, guid: 02ce68928164e704faf6f770a20e3255, type: 3}
 --- !u!4 &1719215201
 Transform:
   m_ObjectHideFlags: 0

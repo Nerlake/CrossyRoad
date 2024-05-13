@@ -22,9 +22,6 @@ public class RoadContainerController : MonoBehaviour, IMovableContainer
 
     private IEnumerator SpawnVehicles()
     {
-        minWaitBeforeSpawnVehicle = 2 / speedOfNewVehicle;
-        maxWaitBeforeSpawnVehicle = minWaitBeforeSpawnVehicle + Random.Range(1, 6);
-
         while (true)
         {
             GameObject newVehicle = Instantiate(
