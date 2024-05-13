@@ -159,13 +159,13 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private void PrepareAndShowGameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        lblYourScore.SetText("Your score is " + (int)scoreController.currentPosZ);
+        lblYourScore.SetText("Your score is " + Mathf.Max((int)scoreController.currentPosZ, 0));
         pauseMenuController.isPause = true;
     }
 
     public void OnValiderScore()
     {
-        int score = (int)scoreController.currentPosZ;
+        int score = Mathf.Max((int)scoreController.currentPosZ, 0);
         string pseudo = inputPseudo.text;
 
         InitScore();

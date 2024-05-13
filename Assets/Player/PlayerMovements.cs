@@ -103,6 +103,9 @@ public class PlayerMovements : MonoBehaviour
             return;
         }
 
+        // transform.Translate(Vector3.forward);
+        // return;
+
         if (!isAnimationUpInProgress && !isAnimationDownInProgress)
         {
             startPositionAnimation = transform.position;

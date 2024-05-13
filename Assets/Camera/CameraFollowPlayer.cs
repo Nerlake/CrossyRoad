@@ -8,6 +8,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     private float speedMovementCamera = 8f;
     private float offsetZ = 3f;
+    private float lastCameraZ;
 
     private void Start()
     {
@@ -15,10 +16,16 @@ public class CameraFollowPlayer : MonoBehaviour
 
         transform.position = player.transform.position + Vector3.back * offsetZ + Vector3.up * 4;
         transform.rotation = Quaternion.Euler(50, 0, 0);
+        lastCameraZ = transform.position.z;
     }
 
     private void Update()
     {
+        if (lastCameraZ > player.transform.position.z - offsetZ)
+        {
+            return;
+        }
+
         Vector3 targetPositionOfCamera = new Vector3(
             // player.transform.position.x,
             transform.position.x,
@@ -30,5 +37,7 @@ public class CameraFollowPlayer : MonoBehaviour
             targetPositionOfCamera,
             speedMovementCamera * Time.deltaTime
         );
+
+        lastCameraZ = transform.position.z;
     }
 }
