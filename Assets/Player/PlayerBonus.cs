@@ -6,6 +6,7 @@ public class PlayerBonus : MonoBehaviour
 {
 
     private LifesContoller lifeController;
+    [SerializeField] private AudioSource gettingHearthSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerBonus : MonoBehaviour
         {
             if (lifeController.AddOneLife())
             {
+                gettingHearthSound.Play();
                 Destroy(other.gameObject);
             }
         }

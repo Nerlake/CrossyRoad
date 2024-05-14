@@ -8,6 +8,7 @@ public class LandGeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] zones;
     [SerializeField] private GameObject hearthBonus;
+    [SerializeField] private int hearthFrequence;
 
     public static float initialSpeedVehicle;
     public static float initialSpeedLog;
@@ -79,10 +80,11 @@ public class LandGeneratorController : MonoBehaviour
             transform.rotation
         );
 
-        if(positionOfLastZoneInZ % 10 == 0)
+        if(positionOfLastZoneInZ % hearthFrequence == 0)
         {
-            Instantiate(hearthBonus, newZone.transform.position + Vector3.up, Quaternion.identity);
-            Debug.Log("LandGenerator: Un bonus de vie a été ajouté");
+            Vector3 position = newZone.transform.position;
+            position.x = Random.Range(-5, 5);
+            Instantiate(hearthBonus, position + Vector3.up, Quaternion.identity);
         }
 
         if (lastNewZone && lastNewZone.name == "RiverContainer(Clone)" && newZone.name == "RiverContainer(Clone)")
