@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class LandGeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] zones;
+    [SerializeField] private GameObject hearthBonus;
 
     public static float initialSpeedVehicle;
     public static float initialSpeedLog;
@@ -77,6 +78,12 @@ public class LandGeneratorController : MonoBehaviour
             transform.position + Vector3.forward * positionOfLastZoneInZ++,
             transform.rotation
         );
+
+        if(positionOfLastZoneInZ % 10 == 0)
+        {
+            Instantiate(hearthBonus, newZone.transform.position + Vector3.up, Quaternion.identity);
+            Debug.Log("LandGenerator: Un bonus de vie a été ajouté");
+        }
 
         if (lastNewZone && lastNewZone.name == "RiverContainer(Clone)" && newZone.name == "RiverContainer(Clone)")
         {
