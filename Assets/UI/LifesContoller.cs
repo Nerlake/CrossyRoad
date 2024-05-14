@@ -39,6 +39,7 @@ public class LifesContoller : MonoBehaviour
 
         GameObject newLife = Instantiate(lifesUI, newPosition, transform.rotation);
         newLife.transform.SetParent(transform);
+        lifes.Add(newLife.GetComponent<Image>());
 
         Debug.Log("Add one life");
         return true;
