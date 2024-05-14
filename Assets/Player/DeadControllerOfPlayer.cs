@@ -168,8 +168,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
         int score = Mathf.Max((int)scoreController.currentPosZ, 0);
         string pseudo = inputPseudo.text;
 
-        InitScore();
-
         addScoreToBoard(score, pseudo);
 
         SceneManager.LoadScene("Home");
@@ -226,38 +224,5 @@ public class DeadControllerOfPlayer : MonoBehaviour
             PlayerPrefs.SetInt("HSValue5", score);
             PlayerPrefs.SetString("HSPseudo5", pseudo);
         }
-    }
-
-    public void InitScore()
-    {
-        if (!PlayerPrefs.HasKey("HSValue1"))
-        {
-            PlayerPrefs.SetInt("HSValue1", 500);
-            PlayerPrefs.SetString("HSPseudo1", "Kiryu");
-        }
-
-        if (!PlayerPrefs.HasKey("HSValue2"))
-        {
-            PlayerPrefs.SetInt("HSValue2", 400);
-            PlayerPrefs.SetString("HSPseudo2", "Majima");
-        }
-
-        if (!PlayerPrefs.HasKey("HSValue3"))
-        {
-            PlayerPrefs.SetInt("HSValue3", 300);
-            PlayerPrefs.SetString("HSPseudo3", "Daigo");
-        }
-
-        if (!PlayerPrefs.HasKey("HSValue4"))
-        {
-            PlayerPrefs.SetInt("HSValue4", 200);
-            PlayerPrefs.SetString("HSPseudo4", "Date");
-        }
-
-        if (!PlayerPrefs.HasKey("HSValue5"))
-        {
-            PlayerPrefs.SetInt("HSValue5", 100);
-            PlayerPrefs.SetString("HSPseudo5", "Haruka");
-        }
-    }
+    }   
 }
