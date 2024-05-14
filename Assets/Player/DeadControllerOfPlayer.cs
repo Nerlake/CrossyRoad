@@ -24,6 +24,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private AudioSource splashSound;
     [SerializeField] private AudioSource crashSound;
     [SerializeField] private AudioSource outOfPovSound;
+    [SerializeField] private AudioSource heartbeatsSound;
 
 
 
@@ -92,6 +93,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
         if (lifeController.RemoveOneLife())
         {
+            heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
             ghostMode = true;
         }
@@ -109,6 +111,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
         if (lifeController.RemoveOneLife())
         {
+            heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
             totalTimeIdleSinceLastMoveOnZ = 0;
         }
@@ -140,6 +143,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
         if (lifeController.RemoveOneLife())
         {
+            heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
             ghostMode = true;
         }
