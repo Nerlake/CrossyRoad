@@ -60,6 +60,11 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("Score");
     }
 
+    public void SkinSelection()
+    {
+        SceneManager.LoadScene("SkinSelection");
+    }
+
     public void Start()
     {
         InitScore();
