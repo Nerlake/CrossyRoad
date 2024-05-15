@@ -12,6 +12,7 @@ TagManager:
   - Life
   - Tree
   - Hearth
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class PlayerBonus : MonoBehaviour
 
     private LifesContoller lifeController;
     [SerializeField] private AudioSource gettingHearthSound;
+    [SerializeField] private AudioSource coinSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,13 @@ public class PlayerBonus : MonoBehaviour
                 gettingHearthSound.Play();
                 Destroy(other.gameObject);
             }
+        }
+
+        if (other.CompareTag("Coin"))
+        {
+            Debug.Log("+1 Coin");
+            coinSound.Play();
+            Destroy(other.gameObject);
         }
     }
 }
