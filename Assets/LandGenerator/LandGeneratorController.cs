@@ -9,6 +9,8 @@ public class LandGeneratorController : MonoBehaviour
     [SerializeField] private GameObject[] zones;
     [SerializeField] private GameObject hearthBonus;
     [SerializeField] private int hearthFrequence;
+    [SerializeField] private GameObject coinBonus;
+    [SerializeField] private int coinFrequence;
 
     public static float initialSpeedVehicle;
     public static float initialSpeedLog;
@@ -80,11 +82,20 @@ public class LandGeneratorController : MonoBehaviour
             transform.rotation
         );
 
+        // ajout de coeur toutes les x zones
         if(positionOfLastZoneInZ % hearthFrequence == 0)
         {
             Vector3 position = newZone.transform.position;
             position.x = Random.Range(-5, 5);
             Instantiate(hearthBonus, position + Vector3.up, Quaternion.identity);
+        }
+
+        // ajout de pièce toutes les x zones
+        if(positionOfLastZoneInZ % coinFrequence == 0)
+        {
+            Vector3 position = newZone.transform.position;
+            position.x = Random.Range(-5, 5);
+            Instantiate(coinBonus, position + Vector3.up, Quaternion.identity);
         }
 
         if (lastNewZone && lastNewZone.name == "RiverContainer(Clone)" && newZone.name == "RiverContainer(Clone)")

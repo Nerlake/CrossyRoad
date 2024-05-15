@@ -3129,7 +3129,9 @@ MonoBehaviour:
   - {fileID: 7923846995227051253, guid: ecc2fd1da7656494782cd1cb9706a70b, type: 3}
   - {fileID: 6987364045810833126, guid: 02ce68928164e704faf6f770a20e3255, type: 3}
   hearthBonus: {fileID: 7076328086089775996, guid: 04575ea601081344ebeb4a79dedab31b, type: 3}
-  hearthFrequence: 40
+  hearthFrequence: 50
+  coinBonus: {fileID: 5428955197853052820, guid: da18633b8c02e274483eeedd198d0f35, type: 3}
+  coinFrequence: 20
 --- !u!4 &1719215201
 Transform:
   m_ObjectHideFlags: 0
