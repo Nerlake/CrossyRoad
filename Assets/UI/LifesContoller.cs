@@ -7,13 +7,15 @@ public class LifesContoller : MonoBehaviour
 {
     private List<Image> lifes = new List<Image>();
     [SerializeField] private GameObject lifesUI;
-    //private Vector3 defaultHearthPosition;
+    private Vector3 defaultHeartPosition;
 
     private void Start()
     {
         lifes.AddRange(transform.GetComponentsInChildren<Image>());
-        //defaultHearthPosition = lifes[0].transform.position;
-        //Debug.Log(defaultHearthPosition.x);
+        if (lifes.Count > 0)
+        {
+            defaultHeartPosition = lifes[0].transform.position;
+        }
     }
 
     public bool RemoveOneLife()
@@ -38,6 +40,7 @@ public class LifesContoller : MonoBehaviour
         Vector3 newPosition = new Vector3(lastHeartPosition.x - 18, lastHeartPosition.y, lastHeartPosition.z);
 
         GameObject newLife = Instantiate(lifesUI, newPosition, transform.rotation);
+        newLife.transform.localScale = new Vector3(2, 2, 2);
         newLife.transform.SetParent(transform);
         lifes.Add(newLife.GetComponent<Image>());
 
@@ -47,7 +50,7 @@ public class LifesContoller : MonoBehaviour
 
     private Vector3 LastHeartPosition()
     {
-        if (lifes.Count <= 0) return new Vector3(0,0,0);
+        if (lifes.Count == 0) return defaultHeartPosition;
 
         return lifes[lifes.Count - 1].transform.position;
     }
