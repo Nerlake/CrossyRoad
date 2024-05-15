@@ -40,7 +40,6 @@ public class LifesContoller : MonoBehaviour
         Vector3 newPosition = new Vector3(lastHeartPosition.x - 18, lastHeartPosition.y, lastHeartPosition.z);
 
         GameObject newLife = Instantiate(lifesUI, newPosition, transform.rotation);
-        newLife.transform.localScale = new Vector3(2, 2, 2);
         newLife.transform.SetParent(transform);
         lifes.Add(newLife.GetComponent<Image>());
 

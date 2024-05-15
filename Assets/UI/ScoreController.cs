@@ -7,6 +7,7 @@ public class ScoreController : MonoBehaviour
     public float currentPosZ;
 
     private TMP_Text txtScore;
+    private int scorePieces;
 
     private void Start()
     {
@@ -15,9 +16,16 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Round(float.Parse(txtScore.text)) < currentPosZ)
+        if (Mathf.Round(float.Parse(txtScore.text)) < currentPosZ + scorePieces)
         {
-            txtScore.SetText(Mathf.Round(currentPosZ) + "");
+            txtScore.SetText(Mathf.Round(currentPosZ) + scorePieces + "");
         }
     }
+
+    public void AddScore(int score)
+    {
+        scorePieces += score;
+    }
+
+
 }

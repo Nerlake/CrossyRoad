@@ -6,12 +6,16 @@ public class PlayerBonus : MonoBehaviour
 {
 
     private LifesContoller lifeController;
+    private ScoreController scoreController;
+    [SerializeField] private GameObject UI;
     [SerializeField] private AudioSource gettingHearthSound;
     [SerializeField] private AudioSource coinSound;
+    [SerializeField] private int coinScore;
     // Start is called before the first frame update
     void Start()
     {
         lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
+        scoreController = UI.GetComponent<ScoreController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +34,7 @@ public class PlayerBonus : MonoBehaviour
             Debug.Log("+1 Coin");
             coinSound.Play();
             Destroy(other.gameObject);
+            scoreController.AddScore(coinScore);
         }
     }
 }

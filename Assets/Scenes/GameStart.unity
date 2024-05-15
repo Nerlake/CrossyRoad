@@ -2264,7 +2264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e37dad400cb0df04cba3e35539fbe5ad, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3015,7 +3015,7 @@ MonoBehaviour:
   - {fileID: 6987364045810833126, guid: 02ce68928164e704faf6f770a20e3255, type: 3}
   - {fileID: 7923846995227051253, guid: ecc2fd1da7656494782cd1cb9706a70b, type: 3}
   hearthBonus: {fileID: 7076328086089775996, guid: 04575ea601081344ebeb4a79dedab31b, type: 3}
-  hearthFrequence: 50
+  hearthFrequence: 10
   coinBonus: {fileID: 5428955197853052820, guid: da18633b8c02e274483eeedd198d0f35, type: 3}
   coinFrequence: 20
 --- !u!4 &1719215201
@@ -4182,6 +4182,14 @@ PrefabInstance:
     - target: {fileID: 4191326932815611252, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703807222936199464, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1778572879}
+    - target: {fileID: 7703807222936199464, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+      propertyPath: coinScore
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7703807222936199464, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: coinSound
