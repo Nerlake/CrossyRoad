@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skin: {fileID: 2100000, guid: 4761b67bcf014b14ca55114eccf67911, type: 2}
   skinName: Antonin
-  scoreMin: 0
+  scoreMin: 1000
