@@ -1,24 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SkinSelectionController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Material[] skins;
+    public GameObject player;
+    public int selectedSkin = 0;
+
+    public void Start()
     {
-        
+        selectedSkin = PlayerPrefs.GetInt("selectedSkin", 0);
+        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NextSkin()
     {
-        
+        selectedSkin++;
+        if (selectedSkin >= skins.Length)
+        {
+            selectedSkin = 0;
+        }
+        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
     }
+
+    public void PreviousSkin()
+    {
+        selectedSkin--;
+        if (selectedSkin < 0)
+        {
+            selectedSkin = skins.Length - 1;
+        }
+        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
+    }
+
 
     public void ExitToHome()
     {
+        PlayerPrefs.SetInt("selectedSkin", selectedSkin);
+
         SceneManager.LoadScene("Home");
     }
 }

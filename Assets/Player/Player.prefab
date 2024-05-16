@@ -606,8 +606,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a181269105062d4fb1416c28dd1d9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
   gettingHearthSound: {fileID: 5346323006709083554}
   coinSound: {fileID: 0}
+  coinScore: 0
 --- !u!82 &5346323006709083554
 AudioSource:
   m_ObjectHideFlags: 0
