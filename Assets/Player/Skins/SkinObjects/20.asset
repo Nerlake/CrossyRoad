@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c5e474985463f43be612d51cf48bfa, type: 3}
   m_Name: 20
   m_EditorClassIdentifier: 
-  Skin: {fileID: 2100000, guid: 4761b67bcf014b14ca55114eccf67911, type: 2}
-  skinName: Antonin
-  scoreMin: 1000
+  Skin: {fileID: 2100000, guid: 4b4d38f7ef3a5d042b75d045d574299a, type: 2}
+  skinName: 20/20
+  scoreMin: 9999999
