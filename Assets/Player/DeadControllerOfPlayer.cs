@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -25,6 +26,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private AudioSource crashSound;
     [SerializeField] private AudioSource outOfPovSound;
     [SerializeField] private AudioSource heartbeatsSound;
+    private Color playerColor;
 
 
 
@@ -37,6 +39,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
         animator = GetComponent<Animator>();
         scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
         pauseMenuController = GameObject.Find("UI").GetComponent<PauseMenuController>();
+        playerColor = GetComponent<MeshRenderer>().material.color;
+
     }
 
     private void Update()
@@ -95,7 +99,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         {
             heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
-            ghostMode = true;
+            TransformToGhostMode();
         }
         else
         {
@@ -145,7 +149,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         {
             heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
-            ghostMode = true;
+            TransformToGhostMode();
         }
         else
         {
@@ -156,7 +160,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void ResetTimeSinceLastDeathAndGhostMode()
     {
-        ghostMode = false;
+        QuitGhostMode();
         timeSinceLastDeath = 0;
     }
 
@@ -173,8 +177,32 @@ public class DeadControllerOfPlayer : MonoBehaviour
         string pseudo = inputPseudo.text;
 
         addScoreToBoard(score, pseudo);
+        UpdateCumulatedScore();
 
         SceneManager.LoadScene("Home");
+    }
+
+    private void TransformToGhostMode()
+    {
+        ghostMode = true;
+        playerColor.a = 0.5f;
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        renderer.material.color = playerColor;
+    }
+
+    private void QuitGhostMode()
+    {
+        ghostMode = false;
+        playerColor.a = 1f;
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        renderer.material.color = playerColor;
+    }
+
+    private void UpdateCumulatedScore()
+    {
+        int cumulatedScore = PlayerPrefs.GetInt("cumulatedScore", 0);
+        int newCumulatedScore = cumulatedScore + (int)scoreController.currentPosZ;
+        PlayerPrefs.SetInt("cumulatedScore", newCumulatedScore);
     }
 
     public void addScoreToBoard(int score, string pseudo)

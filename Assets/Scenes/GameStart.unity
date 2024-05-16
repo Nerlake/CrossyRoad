@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &56964558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4191326932815611252, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+  m_PrefabInstance: {fileID: 902607788010756661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &59778560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1577,7 @@ GameObject:
   - component: {fileID: 800115918}
   - component: {fileID: 800115917}
   - component: {fileID: 800115921}
+  - component: {fileID: 800115922}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1680,6 +1686,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2062226402}
   isPause: 0
+--- !u!114 &800115922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800115916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8a2dc1f6a93b84989f302a57c20a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinList: {fileID: 11400000, guid: 9a2aea8abdc1ee247bf5de8622917564, type: 2}
+  player: {fileID: 56964558}
 --- !u!1 &843662237
 GameObject:
   m_ObjectHideFlags: 0
@@ -4116,7 +4136,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7807358734832165353, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
   m_PrefabInstance: {fileID: 902607788010756661}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 56964558}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e6bcbfe28a0c8307b3cd1fe551c3262, type: 3}
@@ -4177,6 +4197,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3573342150954732468, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850504221091635646, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4191326932815611252, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
