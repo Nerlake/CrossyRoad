@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c5e474985463f43be612d51cf48bfa, type: 3}
-  m_Name: Rubick
+  m_Name: Maxime
   m_EditorClassIdentifier: 
-  Skin: {fileID: 2100000, guid: 74f6815ea2c10204b864a4d77bc5d238, type: 2}
-  skinName: Borg
-  scoreMin: 400
+  Skin: {fileID: 2100000, guid: 4761b67bcf014b14ca55114eccf67911, type: 2}
+  skinName: Antonin
+  scoreMin: 0
