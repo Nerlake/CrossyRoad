@@ -1698,11 +1698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8a2dc1f6a93b84989f302a57c20a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skins:
-  - {fileID: 2100000, guid: 06d6ae5880f9bc8498d9e1ac7685f7d4, type: 2}
-  - {fileID: 2100000, guid: 4b0af83b0cf6c6b46bb38dba4106cd8a, type: 2}
+  skinList: {fileID: 11400000, guid: 9a2aea8abdc1ee247bf5de8622917564, type: 2}
   player: {fileID: 56964558}
-  selectedSkin: 0
 --- !u!1 &843662237
 GameObject:
   m_ObjectHideFlags: 0

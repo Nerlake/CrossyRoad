@@ -3,24 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class SkinSelectionController : MonoBehaviour
 {
-    public Material[] skins;
-    public GameObject player;
-    public int selectedSkin = 0;
+    [SerializeField] public SkinList skinList;
+    [SerializeField] private GameObject player;
+    private int selectedSkin = 0;
 
     public void Start()
     {
         selectedSkin = PlayerPrefs.GetInt("selectedSkin", 0);
-        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
+        player.GetComponent<MeshRenderer>().material = skinList.skins[selectedSkin];
     }
 
     public void NextSkin()
     {
         selectedSkin++;
-        if (selectedSkin >= skins.Length)
+        if (selectedSkin >= skinList.skins.Count)
         {
             selectedSkin = 0;
         }
-        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
+        player.GetComponent<MeshRenderer>().material = skinList.skins[selectedSkin];
     }
 
     public void PreviousSkin()
@@ -28,9 +28,9 @@ public class SkinSelectionController : MonoBehaviour
         selectedSkin--;
         if (selectedSkin < 0)
         {
-            selectedSkin = skins.Length - 1;
+            selectedSkin = skinList.skins.Count - 1;
         }
-        player.GetComponent<MeshRenderer>().material = skins[selectedSkin];
+        player.GetComponent<MeshRenderer>().material = skinList.skins[selectedSkin];
     }
 
 
