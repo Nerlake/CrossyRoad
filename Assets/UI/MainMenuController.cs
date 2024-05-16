@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,6 +12,8 @@ public class MainMenuController : MonoBehaviour
     private float initialSpeedVehicle = 2;
     private float initialSpeedLog = 4;
 
+
+
     public void ModeFacile()
     {
         btnFacile.interactable = false;
@@ -22,6 +22,8 @@ public class MainMenuController : MonoBehaviour
 
         initialSpeedVehicle = 2;
         initialSpeedLog = 4;
+
+        PlayerPrefs.SetInt("difficulty", 1);
     }
 
     public void ModeMoyen()
@@ -32,6 +34,8 @@ public class MainMenuController : MonoBehaviour
 
         initialSpeedVehicle = 4;
         initialSpeedLog = 8;
+
+        PlayerPrefs.SetInt("difficulty", 2);
     }
 
     public void ModeHard()
@@ -42,6 +46,8 @@ public class MainMenuController : MonoBehaviour
 
         initialSpeedVehicle = 8;
         initialSpeedLog = 16;
+
+        PlayerPrefs.SetInt("difficulty", 3);
     }
 
     public void Exit()
@@ -68,6 +74,21 @@ public class MainMenuController : MonoBehaviour
     public void Start()
     {
         InitScore();
+
+        int defaultDifficulty = PlayerPrefs.GetInt("difficulty", 1);
+
+        switch (defaultDifficulty)
+        {
+            case 1:
+                ModeFacile();
+                break;
+            case 2:
+                ModeMoyen();
+                break;
+            case 3:
+                ModeHard();
+                break;
+        }
     }
     public void InitScore()
     {
