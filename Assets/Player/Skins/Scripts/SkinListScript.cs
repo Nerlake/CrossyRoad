@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkinList", menuName = "ScriptableObjects/SkinList", order = 1)]
 public class SkinList : ScriptableObject
 {
-    public List<Material> skins;
+    public List<SkinObject> skins;
 }

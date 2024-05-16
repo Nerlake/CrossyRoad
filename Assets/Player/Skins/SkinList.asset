@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SkinList
   m_EditorClassIdentifier: 
   skins:
-  - {fileID: 2100000, guid: 06d6ae5880f9bc8498d9e1ac7685f7d4, type: 2}
-  - {fileID: 2100000, guid: 4b0af83b0cf6c6b46bb38dba4106cd8a, type: 2}
-  - {fileID: 2100000, guid: 7d2234887e41282429a1f76acba1ce0e, type: 2}
+  - {fileID: 11400000, guid: 9a2ea9982e59cac4ea3efc579bd8a89a, type: 2}
+  - {fileID: 11400000, guid: e98e2ae8ba4c2ef4bba6937fca498e0b, type: 2}
+  - {fileID: 11400000, guid: 704cbaec19faf8649a6ec3e2448a12a4, type: 2}

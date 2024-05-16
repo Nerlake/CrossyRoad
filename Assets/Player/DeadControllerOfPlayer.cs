@@ -177,6 +177,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         string pseudo = inputPseudo.text;
 
         addScoreToBoard(score, pseudo);
+        UpdateCumulatedScore();
 
         SceneManager.LoadScene("Home");
     }
@@ -195,6 +196,13 @@ public class DeadControllerOfPlayer : MonoBehaviour
         playerColor.a = 1f;
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         renderer.material.color = playerColor;
+    }
+
+    private void UpdateCumulatedScore()
+    {
+        int cumulatedScore = PlayerPrefs.GetInt("cumulatedScore", 0);
+        int newCumulatedScore = cumulatedScore + (int)scoreController.currentPosZ;
+        PlayerPrefs.SetInt("cumulatedScore", newCumulatedScore);
     }
 
     public void addScoreToBoard(int score, string pseudo)
