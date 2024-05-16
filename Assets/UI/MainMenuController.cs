@@ -8,10 +8,15 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button btnFacile;
     [SerializeField] private Button btnMoyen;
     [SerializeField] private Button btnHard;
+    [SerializeField] private GameObject themeMusic;
+    [SerializeField] private GameObject UISecret;
+
+
+    [SerializeField] private AudioSource secretMusic;
 
     private float initialSpeedVehicle = 2;
     private float initialSpeedLog = 4;
-
+    private AudioSource themeMusicAudioSource;
 
 
     public void ModeFacile()
@@ -60,6 +65,7 @@ public class MainMenuController : MonoBehaviour
         LandGeneratorController.initialSpeedVehicle = initialSpeedVehicle;
         LandGeneratorController.initialSpeedLog = initialSpeedLog;
         SceneManager.LoadScene("GameStart");
+
     }
     public void SeeScores()
     {
@@ -73,6 +79,7 @@ public class MainMenuController : MonoBehaviour
 
     public void Start()
     {
+        themeMusicAudioSource = themeMusic.GetComponent<AudioSource>();
         InitScore();
 
         int defaultDifficulty = PlayerPrefs.GetInt("difficulty", 1);
@@ -90,6 +97,44 @@ public class MainMenuController : MonoBehaviour
                 break;
         }
     }
+
+    void Update()
+    {
+        DetectShortcut();
+        if(!themeMusicAudioSource.isPlaying && !secretMusic.isPlaying)
+        {
+            themeMusicAudioSource.Play();
+            UISecret.SetActive(false);
+        }
+    }
+
+    void DetectShortcut()
+    {
+        // Vérifie si Ctrl est enfoncé
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            // Vérifie si la touche L est enfoncée
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                //verifie si la musique est en cours de lecture
+                if(secretMusic.isPlaying) return;
+
+                themeMusicAudioSource.Stop();
+                secretMusic.Play();
+                UISecret.SetActive(true);
+                int cumul = PlayerPrefs.GetInt("cumulatedScore", 0);
+                cumul += 100000;
+                PlayerPrefs.SetInt("cumulatedScore", cumul);
+            }
+        }
+    }
+
+    public void ResetCumulatedScore()
+    {
+        PlayerPrefs.SetInt("cumulatedScore", 0);
+    }
+
+
     public void InitScore()
     {
         if (!PlayerPrefs.HasKey("HSValue1"))
