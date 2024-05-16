@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rubick
   m_EditorClassIdentifier: 
   Skin: {fileID: 2100000, guid: 74f6815ea2c10204b864a4d77bc5d238, type: 2}
-  skinName: Borg
+  skinName: Rubick
   scoreMin: 400
