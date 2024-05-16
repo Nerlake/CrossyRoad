@@ -10,7 +10,7 @@ public class PlayerBonus : MonoBehaviour
     [SerializeField] private GameObject UI;
     [SerializeField] private AudioSource gettingHearthSound;
     [SerializeField] private AudioSource coinSound;
-    [SerializeField] private int coinScore;
+    [SerializeField] public int coinScore;
     // Start is called before the first frame update
     void Start()
     {

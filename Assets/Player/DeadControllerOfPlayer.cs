@@ -13,6 +13,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private float timeBeforeCheckAgainIsDeath = 0.1f;
     private float timeSinceLastDeath = 0f;
 
+
     private LifesContoller lifeController;
 
     private bool ghostMode = false;
@@ -27,6 +28,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private AudioSource outOfPovSound;
     [SerializeField] private AudioSource heartbeatsSound;
     private Color playerColor;
+    private PlayerBonus playerBonus;
 
 
 
@@ -40,6 +42,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
         scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
         pauseMenuController = GameObject.Find("UI").GetComponent<PauseMenuController>();
         playerColor = GetComponent<MeshRenderer>().material.color;
+        playerBonus = GetComponent<PlayerBonus>();
+
 
     }
 
@@ -93,7 +97,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (timeSinceLastDeath <= timeBeforeCheckAgainIsDeath) return;
 
         splashSound.Play();
-        print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
+        //print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
 
         if (lifeController.RemoveOneLife())
         {
@@ -112,7 +116,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
 
-        print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
+        //print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
         if (lifeController.RemoveOneLife())
         {
             heartbeatsSound.Play();
@@ -132,7 +136,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
         outOfPovSound.Play();
 
-        print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
+        //print("DeadControllerOfPlayer: Le joueur meurt car il n'est plus dans la FOV");
 
         PrepareAndShowGameOverScreen();
         // EditorApplication.isPlaying = false;
@@ -142,7 +146,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         if (ghostMode) return;
 
-        print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
+        //print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
         crashSound.Play();
 
         if (lifeController.RemoveOneLife())
@@ -167,7 +171,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
     private void PrepareAndShowGameOverScreen()
     {
         gameOverScreen.SetActive(true);
-        lblYourScore.SetText("Your score is " + Mathf.Max((int)scoreController.currentPosZ, 0));
+        int score = Mathf.Max((int)scoreController.currentPosZ, 0) + scoreController.scorePieces;
+        lblYourScore.SetText("Your score is " + score);
         pauseMenuController.isPause = true;
     }
 
@@ -175,8 +180,9 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         int score = Mathf.Max((int)scoreController.currentPosZ, 0);
         string pseudo = inputPseudo.text;
-
-        addScoreToBoard(score, pseudo);
+        int newScore = score + playerBonus.coinScore;
+        Debug.Log("Score : " + newScore);
+        addScoreToBoard(score + playerBonus.coinScore, pseudo);
         UpdateCumulatedScore();
 
         SceneManager.LoadScene("Home");

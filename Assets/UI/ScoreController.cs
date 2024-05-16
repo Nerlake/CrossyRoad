@@ -7,7 +7,7 @@ public class ScoreController : MonoBehaviour
     public float currentPosZ;
 
     private TMP_Text txtScore;
-    private int scorePieces;
+    public int scorePieces;
 
     private void Start()
     {
