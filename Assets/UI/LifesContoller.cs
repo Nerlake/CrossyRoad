@@ -1,56 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LifesContoller : MonoBehaviour
 {
-    private List<Image> lifes = new List<Image>();
+    private int maxLifes = 3;
     [SerializeField] private GameObject lifesUI;
-    private Vector3 defaultHeartPosition;
+    [SerializeField] private TMP_Text nbLifesText;
+    [SerializeField] public int nbLifes = 3;
 
     private void Start()
     {
-        lifes.AddRange(transform.GetComponentsInChildren<Image>());
-        if (lifes.Count > 0)
-        {
-            defaultHeartPosition = lifes[0].transform.position;
-        }
+        nbLifesText.SetText(nbLifes.ToString());
     }
 
     public bool RemoveOneLife()
     {
-        if (lifes.Count <= 0) return false;
+        if (nbLifes <= 0)
+        {
+            Debug.Log("You can't have less than 0 lifes");
+            return false;
+        }
 
-        Destroy(lifes[lifes.Count - 1]);
-        lifes.RemoveAt(lifes.Count - 1);
-
+        nbLifes--;
+        nbLifesText.SetText(nbLifes.ToString());
+        Debug.Log("Remove one life");
         return true;
     }
 
     public bool AddOneLife()
     {
-        if (lifes.Count >= 3)
+        if (nbLifes >= maxLifes)
         {
-            Debug.Log("You can't have more than 3 lifes");
+            Debug.Log("You can't have more than " + maxLifes + " lifes");
             return false;
         }
 
-        Vector3 lastHeartPosition = LastHeartPosition();
-        Vector3 newPosition = new Vector3(lastHeartPosition.x - 18, lastHeartPosition.y, lastHeartPosition.z);
-
-        GameObject newLife = Instantiate(lifesUI, newPosition, transform.rotation);
-        newLife.transform.SetParent(transform);
-        lifes.Add(newLife.GetComponent<Image>());
-
+        nbLifes++;
+        nbLifesText.SetText(nbLifes.ToString());
         Debug.Log("Add one life");
         return true;
-    }
-
-    private Vector3 LastHeartPosition()
-    {
-        if (lifes.Count == 0) return defaultHeartPosition;
-
-        return lifes[lifes.Count - 1].transform.position;
     }
 }
