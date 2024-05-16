@@ -72,14 +72,13 @@ public class SkinSelectionController : MonoBehaviour
 
         string name = skinList.skins[selectedSkin].skinName;
         int score = PlayerPrefs.GetInt("cumulatedScore");
+        skinName?.SetText(name.ToString());
         if (DoesThePlayerHaveTheSkin())
         {
-            skinName?.SetText(name.ToString());
             skinPrice?.SetText("");
         }
         else
         {
-            skinName?.SetText("Locked");
             int scoreToUnlock = skinList.skins[selectedSkin].scoreMin - score;
             skinPrice?.SetText("Unlocked in : " + scoreToUnlock.ToString() + " pts");
         }
