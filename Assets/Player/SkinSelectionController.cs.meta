@@ -3,7 +3,13 @@ guid: 0d8a2dc1f6a93b84989f302a57c20a58
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - skinList: {fileID: 11400000, guid: 9a2aea8abdc1ee247bf5de8622917564, type: 2}
+  - player: {instanceID: 0}
+  - skinName: {instanceID: 0}
+  - skinPrice: {instanceID: 0}
+  - selectButton: {instanceID: 0}
+  - cadena: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

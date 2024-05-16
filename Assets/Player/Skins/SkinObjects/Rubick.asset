@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c5e474985463f43be612d51cf48bfa, type: 3}
-  m_Name: Portal
+  m_Name: Rubick
   m_EditorClassIdentifier: 
-  Skin: {fileID: 2100000, guid: 7d2234887e41282429a1f76acba1ce0e, type: 2}
-  skinName: Companion
-  scoreMin: 130
+  Skin: {fileID: 2100000, guid: 92f1d8af483695f47a02dd61e766af43, type: 2}
+  skinName: Borg
+  scoreMin: 300
