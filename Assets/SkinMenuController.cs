@@ -10,7 +10,6 @@ public class SkinMenuController : MonoBehaviour
     void Start()
     {
         int score = PlayerPrefs.GetInt("cumulatedScore");
-        Debug.Log(score);
         cumulatedScoreValue.SetText(score.ToString());
     }
 }

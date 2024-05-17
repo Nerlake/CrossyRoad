@@ -28,7 +28,8 @@ public class DeadControllerOfPlayer : MonoBehaviour
     [SerializeField] private AudioSource outOfPovSound;
     [SerializeField] private AudioSource heartbeatsSound;
     private Color playerColor;
-    private PlayerBonus playerBonus;
+    public int lifes = 3;
+    public int maxLifes = 3;
 
 
 
@@ -42,9 +43,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
         scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
         pauseMenuController = GameObject.Find("UI").GetComponent<PauseMenuController>();
         playerColor = GetComponent<MeshRenderer>().material.color;
-        playerBonus = GetComponent<PlayerBonus>();
-
-
     }
 
     private void Update()
@@ -99,7 +97,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         splashSound.Play();
         //print("DeadControllerOfPlayer: Le joueur meurt car il est tombé dans la rivière");
 
-        if (lifeController.RemoveOneLife())
+        if (RemoveOneLife())
         {
             heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
@@ -117,7 +115,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (timeSinceLastDeath < timeBeforeCheckAgainIsDeath) return;
 
         //print("DeadControllerOfPlayer: Le joueur meurt car il est resté trop longtemps inactif");
-        if (lifeController.RemoveOneLife())
+        if (RemoveOneLife())
         {
             heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
@@ -149,7 +147,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
         //print("DeadControllerOfPlayer: Le joueur meurt car il se fait percuté par un véhicule");
         crashSound.Play();
 
-        if (lifeController.RemoveOneLife())
+        if (RemoveOneLife())
         {
             heartbeatsSound.Play();
             timeSinceLastDeath = 0f;
@@ -179,10 +177,14 @@ public class DeadControllerOfPlayer : MonoBehaviour
     public void OnValiderScore()
     {
         int score = Mathf.Max((int)scoreController.currentPosZ, 0);
-        string pseudo = inputPseudo.text;
-        int newScore = score + playerBonus.coinScore;
+        string pseudo = inputPseudo.text.Trim();
+        if(string.IsNullOrEmpty(pseudo))
+        {
+            pseudo = "Player";
+        }
+        int newScore = score + scoreController.scorePieces;
         Debug.Log("Score : " + newScore);
-        addScoreToBoard(score + playerBonus.coinScore, pseudo);
+        addScoreToBoard(newScore, pseudo);
         UpdateCumulatedScore();
 
         SceneManager.LoadScene("Home");
@@ -213,6 +215,11 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void addScoreToBoard(int score, string pseudo)
     {
+        pseudo = pseudo.Trim();
+        if(string.IsNullOrEmpty(pseudo))
+        {
+            pseudo = "Player";
+        }
         if (score > PlayerPrefs.GetInt("HSValue1"))
         {
             PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
@@ -263,4 +270,30 @@ public class DeadControllerOfPlayer : MonoBehaviour
             PlayerPrefs.SetString("HSPseudo5", pseudo);
         }
     }   
+
+
+
+    public bool AddOneLife()
+    {
+        if (lifes < maxLifes)
+        {
+            lifes++;
+            lifeController.AddOneLife();
+            return true;
+        }
+        return false;
+    }
+
+    private bool RemoveOneLife()
+    {
+        if (lifes <= 0)
+        {
+            return false;
+        }
+
+        lifes--;
+        lifeController.RemoveOneLife();
+        return true;
+
+    }
 }

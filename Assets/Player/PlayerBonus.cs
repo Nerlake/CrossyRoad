@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBonus : MonoBehaviour
 {
 
-    private LifesContoller lifeController;
+    private DeadControllerOfPlayer deadController;
     private ScoreController scoreController;
     [SerializeField] private GameObject UI;
     [SerializeField] private AudioSource gettingHearthSound;
@@ -14,7 +14,7 @@ public class PlayerBonus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lifeController = GameObject.Find("lifes").GetComponent<LifesContoller>();
+        deadController =  GetComponent<DeadControllerOfPlayer>();
         scoreController = UI.GetComponent<ScoreController>();
     }
 
@@ -22,7 +22,7 @@ public class PlayerBonus : MonoBehaviour
     {
         if (other.CompareTag("Hearth"))
         {
-            if (lifeController.AddOneLife())
+            if (deadController.AddOneLife())
             {
                 gettingHearthSound.Play();
                 Destroy(other.gameObject);

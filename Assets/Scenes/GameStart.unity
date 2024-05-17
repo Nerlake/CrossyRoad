@@ -1166,7 +1166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 306, y: -220}
+  m_AnchoredPosition: {x: 306, y: -188}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605742806
@@ -3910,7 +3910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifesUI: {fileID: 1234282453933134445, guid: 6e617ada0a58ab848a2258b44478d4ee, type: 3}
   nbLifesText: {fileID: 1942826482}
-  nbLifes: 3
+  player: {fileID: 56964558}
 --- !u!1 &2062226402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,11 +4132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6bcbfe28a0c8307b3cd1fe551c3262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &526621335190344247 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1918112069048983381, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
-  m_PrefabInstance: {fileID: 902607788010756661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &902607788010756661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4145,10 +4140,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1918112069048983381, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3573342150954732468, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4189,10 +4180,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3850504221091635646, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4191326932815611252, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4201,14 +4188,14 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 1778572879}
-    - target: {fileID: 7703807222936199464, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
-      propertyPath: coinScore
-      value: 10
+    - target: {fileID: 7807358734832165353, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+      propertyPath: lifes
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 7703807222936199464, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
-      propertyPath: coinSound
-      value: 
-      objectReference: {fileID: 526621335190344247}
+    - target: {fileID: 7807358734832165353, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
+      propertyPath: maxLifes
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7807358734832165353, guid: f52393698e7c084409e943e19a3bca1a, type: 3}
       propertyPath: inputPseudo
       value: 

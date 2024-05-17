@@ -6,41 +6,25 @@ using UnityEngine.UI;
 
 public class LifesContoller : MonoBehaviour
 {
-    private int maxLifes = 3;
+
     [SerializeField] private GameObject lifesUI;
     [SerializeField] private TMP_Text nbLifesText;
-    [SerializeField] public int nbLifes = 3;
+    [SerializeField] private GameObject player;
+    private DeadControllerOfPlayer deadControllerOfPlayer;
 
     private void Start()
     {
-        nbLifesText.SetText(nbLifes.ToString());
+        deadControllerOfPlayer = player.GetComponent<DeadControllerOfPlayer>();
+        nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
     }
 
-    public bool RemoveOneLife()
+    public void RemoveOneLife()
     {
-        if (nbLifes <= 0)
-        {
-            Debug.Log("You can't have less than 0 lifes");
-            return false;
-        }
-
-        nbLifes--;
-        nbLifesText.SetText(nbLifes.ToString());
-        Debug.Log("Remove one life");
-        return true;
+        nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
     }
 
-    public bool AddOneLife()
+    public void AddOneLife()
     {
-        if (nbLifes >= maxLifes)
-        {
-            Debug.Log("You can't have more than " + maxLifes + " lifes");
-            return false;
-        }
-
-        nbLifes++;
-        nbLifesText.SetText(nbLifes.ToString());
-        Debug.Log("Add one life");
-        return true;
+        nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
     }
 }

@@ -1,4 +1,6 @@
 
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +12,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button btnHard;
     [SerializeField] private GameObject themeMusic;
     [SerializeField] private GameObject UISecret;
+    [SerializeField] private TMP_Text UISecretText;
+    [SerializeField] private int secretPoint;
 
 
     [SerializeField] private AudioSource secretMusic;
@@ -116,22 +120,19 @@ public class MainMenuController : MonoBehaviour
             // Vérifie si la touche L est enfoncée
             if (Input.GetKeyDown(KeyCode.L))
             {
-                //verifie si la musique est en cours de lecture
-                if(secretMusic.isPlaying) return;
-
-                themeMusicAudioSource.Stop();
-                secretMusic.Play();
-                UISecret.SetActive(true);
-                int cumul = PlayerPrefs.GetInt("cumulatedScore", 0);
-                cumul += 100000;
-                PlayerPrefs.SetInt("cumulatedScore", cumul);
+                BonusSecret(secretPoint);
             }
         }
     }
 
-    public void ResetCumulatedScore()
+    public void ResetGame()
     {
-        PlayerPrefs.SetInt("cumulatedScore", 0);
+        UISecret.SetActive(true);
+        UISecretText.SetText("Game Reset");
+        PlayerPrefs.DeleteAll();
+        InitScore();
+        // desactive le secret ui dans 2 secondes
+        Invoke("DisableSecretUI", 2);
     }
 
 
@@ -166,5 +167,23 @@ public class MainMenuController : MonoBehaviour
             PlayerPrefs.SetInt("HSValue5", 50);
             PlayerPrefs.SetString("HSPseudo5", "Haruka");
         }
+    }
+
+    public void DisableSecretUI()
+    {
+        UISecret.SetActive(false);
+    }
+
+    private void BonusSecret(int pointsToAdd)
+    {
+        if (secretMusic.isPlaying) return;
+
+        themeMusicAudioSource.Stop();
+        secretMusic.Play();
+        UISecretText.SetText(pointsToAdd.ToString() + " points unlocked");
+        UISecret.SetActive(true);
+        int cumul = PlayerPrefs.GetInt("cumulatedScore", 0);
+        cumul += pointsToAdd;
+        PlayerPrefs.SetInt("cumulatedScore", cumul);
     }
 }

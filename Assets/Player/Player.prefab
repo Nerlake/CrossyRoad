@@ -150,6 +150,8 @@ MonoBehaviour:
   crashSound: {fileID: 5736927989387448917}
   outOfPovSound: {fileID: 8254730215576238604}
   heartbeatsSound: {fileID: 6042664653072922637}
+  lifes: 3
+  maxLifes: 3
 --- !u!54 &6070036225721192204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -608,8 +610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
   gettingHearthSound: {fileID: 5346323006709083554}
-  coinSound: {fileID: 0}
-  coinScore: 0
+  coinSound: {fileID: 1918112069048983381}
+  coinScore: 10
 --- !u!82 &5346323006709083554
 AudioSource:
   m_ObjectHideFlags: 0
@@ -813,7 +815,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3d086b72ab4730e4f8e712367a199f9c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
