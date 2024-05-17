@@ -32,7 +32,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
     public int maxLifes = 3;
 
 
-
     private PauseMenuController pauseMenuController;
 
     private void Start()
@@ -178,16 +177,19 @@ public class DeadControllerOfPlayer : MonoBehaviour
     {
         int score = Mathf.Max((int)scoreController.currentPosZ, 0);
         string pseudo = inputPseudo.text.Trim();
-        if(string.IsNullOrEmpty(pseudo))
+        if (string.IsNullOrEmpty(pseudo))
         {
             pseudo = "Player";
         }
+
         int newScore = score + scoreController.scorePieces;
         Debug.Log("Score : " + newScore);
         addScoreToBoard(newScore, pseudo);
         UpdateCumulatedScore();
 
         SceneManager.LoadScene("Home");
+        // Time.timeScale = 1;
+        pauseMenuController.isPause = false;
     }
 
     private void TransformToGhostMode()
@@ -215,10 +217,11 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void addScoreToBoard(int score, string pseudo)
     {
-        if (pseudo =="\u200b")
+        if (pseudo == "\u200b")
         {
             pseudo = "Player";
         }
+
         if (score > PlayerPrefs.GetInt("HSValue1"))
         {
             PlayerPrefs.SetInt("HSValue5", PlayerPrefs.GetInt("HSValue4"));
@@ -268,8 +271,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
             PlayerPrefs.SetInt("HSValue5", score);
             PlayerPrefs.SetString("HSPseudo5", pseudo);
         }
-    }   
-
+    }
 
 
     public bool AddOneLife()
@@ -280,6 +282,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
             lifeController.AddOneLife();
             return true;
         }
+
         return false;
     }
 
@@ -293,6 +296,5 @@ public class DeadControllerOfPlayer : MonoBehaviour
         lifes--;
         lifeController.RemoveOneLife();
         return true;
-
     }
 }

@@ -45,6 +45,8 @@ public class PauseMenuController : MonoBehaviour
 
     public void MainMenu()
     {
+        isPause = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene("Home");
     }
 }
