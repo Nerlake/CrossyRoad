@@ -215,8 +215,7 @@ public class DeadControllerOfPlayer : MonoBehaviour
 
     public void addScoreToBoard(int score, string pseudo)
     {
-        pseudo = pseudo.Trim();
-        if(string.IsNullOrEmpty(pseudo))
+        if (pseudo =="\u200b")
         {
             pseudo = "Player";
         }
