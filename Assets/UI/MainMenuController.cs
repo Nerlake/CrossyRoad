@@ -14,6 +14,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject UISecret;
     [SerializeField] private TMP_Text UISecretText;
     [SerializeField] private int secretPoint;
+    [SerializeField] public int lifes;
+    [SerializeField] public int maxLifes;
 
 
     [SerializeField] private AudioSource secretMusic;
@@ -31,6 +33,8 @@ public class MainMenuController : MonoBehaviour
 
         initialSpeedVehicle = 2;
         initialSpeedLog = 4;
+        PlayerPrefs.SetInt("lifes", 3);
+        PlayerPrefs.SetInt("maxLifes", 3);
 
         PlayerPrefs.SetInt("difficulty", 1);
     }
@@ -44,6 +48,9 @@ public class MainMenuController : MonoBehaviour
         initialSpeedVehicle = 4;
         initialSpeedLog = 8;
 
+        PlayerPrefs.SetInt("lifes", 1);
+        PlayerPrefs.SetInt("maxLifes", 1);
+
         PlayerPrefs.SetInt("difficulty", 2);
     }
 
@@ -53,8 +60,11 @@ public class MainMenuController : MonoBehaviour
         btnMoyen.interactable = true;
         btnHard.interactable = false;
 
-        initialSpeedVehicle = 8;
-        initialSpeedLog = 16;
+        initialSpeedVehicle = 6;
+        initialSpeedLog = 12;
+
+        PlayerPrefs.SetInt("lifes", 0);
+        PlayerPrefs.SetInt("maxLifes", 1);
 
         PlayerPrefs.SetInt("difficulty", 3);
     }

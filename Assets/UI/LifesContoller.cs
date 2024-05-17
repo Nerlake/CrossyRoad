@@ -18,12 +18,8 @@ public class LifesContoller : MonoBehaviour
         nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
     }
 
-    public void RemoveOneLife()
-    {
-        nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
-    }
 
-    public void AddOneLife()
+    public void UpdateLifes()
     {
         nbLifesText.SetText(deadControllerOfPlayer.lifes.ToString());
     }
