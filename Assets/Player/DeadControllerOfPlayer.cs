@@ -42,10 +42,17 @@ public class DeadControllerOfPlayer : MonoBehaviour
         scoreController = GameObject.Find("txtScore").GetComponent<ScoreController>();
         pauseMenuController = GameObject.Find("UI").GetComponent<PauseMenuController>();
         playerColor = GetComponent<MeshRenderer>().material.color;
+
+        if (PlayerPrefs.HasKey("lifes") && PlayerPrefs.HasKey("maxLifes"))
+        {
+            lifes = PlayerPrefs.GetInt("lifes");
+            maxLifes = PlayerPrefs.GetInt("maxLifes");
+        }
     }
 
     private void Update()
     {
+        lifeController.UpdateLifes();
         if (ghostMode)
         {
             animator.SetTrigger("GhostMode");
@@ -279,7 +286,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
         if (lifes < maxLifes)
         {
             lifes++;
-            lifeController.AddOneLife();
             return true;
         }
 
@@ -294,7 +300,6 @@ public class DeadControllerOfPlayer : MonoBehaviour
         }
 
         lifes--;
-        lifeController.RemoveOneLife();
         return true;
     }
 }
